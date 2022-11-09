@@ -4,8 +4,6 @@ using student_risk_hero.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 // Add services to the container.
 builder.Services.AddDbContext<StudentRiskHeroContext>(m =>
 {
@@ -25,6 +23,12 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseSwagger();
+    app.UseSwaggerUI();
+} 
+else
+{
+    // TODO: REMOVE ELSE CLAUSE SINCE WE DON'T NEED THIS PAGE AT THE END
     app.UseSwagger();
     app.UseSwaggerUI();
 }
