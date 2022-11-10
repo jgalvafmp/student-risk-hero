@@ -12,12 +12,12 @@ namespace student_risk_hero.Services
             this.baseRepository = baseRepository;
         }
 
-        public T Add(T entity)
+        public virtual T Add(T entity)
         {
             return baseRepository.Add(entity);
         }
 
-        public bool Exists(Guid id)
+        public  bool Exists(Guid id)
         {
             return baseRepository.Exists(id);
         }

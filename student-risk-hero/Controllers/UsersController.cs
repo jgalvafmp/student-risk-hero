@@ -1,16 +1,65 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using student_risk_hero.Contracts;
 using student_risk_hero.Data.Models;
+using student_risk_hero.Services.Dtos;
 
 namespace student_risk_hero.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : BaseController<User>
+    [Authorize]
+    public class UsersController : ControllerBase
     {
-        public UsersController(IBaseService<User> baseService) : base(baseService)
+        private readonly IBaseService<User> baseService;
+
+        public UsersController(IBaseService<User> baseService)
         {
+            this.baseService = baseService;
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(baseService.GetAll());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(Guid id)
+        {
+            var entity = baseService.Get(id);
+
+            if (entity == null) return NotFound($"The user with id {id} was not found");
+
+            return Ok(entity);
+        }
+
+        [HttpPatch("validate/{Username}")]
+        public IActionResult ValidateUser(string username)
+        {
+            var entity = baseService.Get(user => user.Username == username);
+
+            if (entity == null) return NotFound($"The user with name {username} was not found");
+
+            entity.IsValidated = true;
+
+            return Ok(baseService.Update(entity));
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult Patch(Guid id, UserDto data)
+        {
+            var entity = baseService.Get(id);
+
+            if (entity == null) return NotFound($"The user with id {id} was not found");
+
+            entity.Firstname = data.Firstname;
+            entity.Lastname = data.Lastname;
+            entity.Username = data.Username;
+            entity.Birthdate = data.Birthdate;
+
+            return Ok(baseService.Update(entity));
         }
     }
 }

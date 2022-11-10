@@ -23,7 +23,7 @@ namespace student_risk_hero.Controllers
         {
             var entity = baseService.Get(id);
 
-            if (entity == null) return NotFound($"Entity with id {id} was not found");
+            if (entity == null) return NotFound($"The {nameof(T)} with id {id} was not found");
 
             return Ok(entity);
         }

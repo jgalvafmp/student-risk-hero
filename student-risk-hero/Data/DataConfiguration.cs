@@ -9,6 +9,7 @@ namespace student_risk_hero.Data
         public static void AddDataConfiguration(this IServiceCollection services)
         {
             services.AddScoped<IBaseRepository<User>, BaseRepository<User>>();
+            services.AddScoped<IBaseRepository<Student>, BaseRepository<Student>>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }

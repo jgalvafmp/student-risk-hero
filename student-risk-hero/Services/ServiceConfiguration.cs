@@ -7,7 +7,9 @@ namespace student_risk_hero.Services
     {
         public static void AddServices(this IServiceCollection services)
         {
-            services.AddScoped<IBaseService<User>, BaseService<User>>();
+            services.AddScoped<IBaseService<User>, UserService>();
+            services.AddScoped<IBaseService<Student>, BaseService<Student>>();
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace student_risk_hero.Data.Repositories
         {
             if (filter == null) return null;
 
-            return _dbSet.First(filter);
+            return _dbSet.FirstOrDefault(filter);
         }
 
         public TResult? Get<TResult>(Func<IQueryable<T>, IQueryable<TResult>> transform, Expression<Func<T, bool>>? filter = null)
