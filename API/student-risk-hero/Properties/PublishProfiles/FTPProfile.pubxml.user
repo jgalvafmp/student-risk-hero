@@ -8,7 +8,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAcO66Pt51DEaym6If7H+ZawAAAAACAAAAAAAQZgAAAAEAACAAAADTPEOgldI20+dQFemExn/d7jXcrHqGUTX1m+VE2n90zwAAAAAOgAAAAAIAACAAAAD8mqsP24miMDeSAgrolP/+vdo3dijBqAyLUiGuAgdofCAAAABvFk1y7qbbd4dwOaU7pxQvjtz1gya5dtvQ0OnWbo2OBUAAAAAWbYBIFZB7Yj6kyuTuGxmzf8J7oMhh76m/TpiUg80qWoJFv6fm9XsgOCjvRkIFsXCWZgHF1+cT6x+fE+5ZKWkg</EncryptedPassword>
     <_PublishTargetUrl>ftp://student-risk-hero.somee.com/www.student-risk-hero.somee.com</_PublishTargetUrl>
-    <History>True|2022-11-09T19:11:48.5997201Z;True|2022-11-09T15:09:59.3769871-04:00;True|2022-11-09T15:04:52.1079231-04:00;True|2022-11-09T14:55:37.8847791-04:00;True|2022-11-09T14:33:03.2881665-04:00;False|2022-11-09T14:28:44.0767035-04:00;True|2022-11-09T14:24:57.5130466-04:00;True|2022-11-09T14:14:50.5686234-04:00;False|2022-11-09T14:09:36.9346526-04:00;True|2022-11-09T13:56:48.5269434-04:00;</History>
+    <History>True|2022-11-10T02:57:55.4320795Z;True|2022-11-09T15:11:48.5997201-04:00;True|2022-11-09T15:09:59.3769871-04:00;True|2022-11-09T15:04:52.1079231-04:00;True|2022-11-09T14:55:37.8847791-04:00;True|2022-11-09T14:33:03.2881665-04:00;False|2022-11-09T14:28:44.0767035-04:00;True|2022-11-09T14:24:57.5130466-04:00;True|2022-11-09T14:14:50.5686234-04:00;False|2022-11-09T14:09:36.9346526-04:00;True|2022-11-09T13:56:48.5269434-04:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="api-ms-win-core-console-l1-1-0.dll">
@@ -141,7 +141,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/09/2022 10:43:09</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>11/09/2022 12:08:40</publishTime>
+      <publishTime>11/09/2022 22:22:40</publishTime>
     </File>
     <File Include="aspnetcorev2_inprocess.dll">
       <publishTime>05/18/2022 14:09:02</publishTime>
@@ -187,6 +187,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Microsoft.AspNetCore.Authentication.dll">
       <publishTime>05/18/2022 14:17:58</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Authentication.JwtBearer.dll">
+      <publishTime>10/23/2022 18:39:36</publishTime>
     </File>
     <File Include="Microsoft.AspNetCore.Authentication.OAuth.dll">
       <publishTime>05/18/2022 14:17:58</publishTime>
@@ -684,19 +687,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/19/2020 14:49:30</publishTime>
     </File>
     <File Include="student-risk-hero.deps.json">
-      <publishTime>11/09/2022 15:10:45</publishTime>
+      <publishTime>11/09/2022 22:56:49</publishTime>
     </File>
     <File Include="student-risk-hero.dll">
-      <publishTime>11/09/2022 15:10:45</publishTime>
+      <publishTime>11/09/2022 22:56:48</publishTime>
     </File>
     <File Include="student-risk-hero.exe">
-      <publishTime>11/09/2022 15:10:45</publishTime>
+      <publishTime>11/09/2022 22:56:48</publishTime>
     </File>
     <File Include="student-risk-hero.pdb">
-      <publishTime>11/09/2022 15:10:45</publishTime>
+      <publishTime>11/09/2022 22:56:48</publishTime>
     </File>
     <File Include="student-risk-hero.runtimeconfig.json">
-      <publishTime>11/09/2022 14:23:56</publishTime>
+      <publishTime>11/09/2022 22:56:48</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.Swagger.dll">
       <publishTime>10/16/2021 08:54:10</publishTime>
@@ -1083,7 +1086,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/19/2020 14:53:36</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>11/09/2022 15:10:45</publishTime>
+      <publishTime>11/09/2022 22:56:49</publishTime>
     </File>
   </ItemGroup>
 </Project>

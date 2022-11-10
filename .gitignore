@@ -1,3 +1,27 @@
-.vs/
-student-risk-hero/bin/
-student-risk-hero/obj/
+# API
+API/.vs/
+API/student-risk-hero/bin/
+API/student-risk-hero/obj/
+
+# WebApp
+# dependencies
+WebApp/node_modules
+WebApp/.pnp
+WebApp/.pnp.js
+
+# testing
+WebApp/coverage
+
+# production
+WebApp/build
+
+# misc
+WebApp/.DS_Store
+WebApp/.env.local
+WebApp/.env.development.local
+WebApp/.env.test.local
+WebApp/.env.production.local
+
+WebApp/npm-debug.log*
+WebApp/yarn-debug.log*
+WebApp/yarn-error.log*
