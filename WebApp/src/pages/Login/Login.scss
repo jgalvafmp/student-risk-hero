@@ -1,0 +1,21 @@
+@import '../../assets/styles/text.scss';
+@import '../../assets/styles/colors.scss';
+
+.srhero__login--container {
+    height: 100%;
+    background-color: $main-primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .srhero__card {
+        display: flex;
+        justify-content: center;
+        h1 {
+            @include font-style(h2);
+            text-align: center;
+            text-transform: uppercase;
+            color: $primary;
+            margin-bottom: 1rem;
+        }
+    }
+}

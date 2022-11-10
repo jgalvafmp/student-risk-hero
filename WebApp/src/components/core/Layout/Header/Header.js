@@ -2,7 +2,8 @@ import './Header.scss';
 
 const Header = props => {
     return (
-        <div className="header">
+        <div className="srhero__header">
+            <button>Log out</button>
         </div>
     );
 }

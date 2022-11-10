@@ -1,0 +1,9 @@
+@import '../../../assets/styles/colors.scss';
+
+.srhero__card {
+    padding: 1.5rem;
+    border-radius: 2rem;
+    background-color: white;
+    border: 0.1rem solid $tertiary;
+    box-shadow: 0.5rem 0.3rem 1.5rem $secondary;
+}

@@ -1,0 +1,23 @@
+@import '../../../assets/styles/colors.scss';
+
+
+.srhero__layout {    
+    height: 100%;
+    background-color: $bg-main;
+
+    .srhero__sidebar {
+        width: 20%;
+    }
+
+    .srhero__layout--container {
+        display: flex;        
+        height: 100%;
+        width: 100%;
+        .srhero__layout--content {
+            background-color: $bg-main;
+            padding: 0.6rem;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

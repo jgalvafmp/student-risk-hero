@@ -1,10 +1,8 @@
-import './App.scss';
+import Routes from './components/core/Routes/Routes';
 
 function App() {
   return (
-    <div className="App">
-      <span>App</span>
-    </div>
+    <Routes />
   );
 }
 

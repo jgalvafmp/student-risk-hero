@@ -1,0 +1,35 @@
+@mixin font-style ($level) {
+    $fontStyle: map-get($font-styles, $level);
+
+    font-weight: map-get($fontStyle, font-weight);
+    font-size: map-get($fontStyle, font-size);
+    line-height: map-get($fontStyle, line-height);
+    letter-spacing: map-get($fontStyle, letter-spacing);
+}
+
+$font-styles: (
+    h1: (
+        font-weight: bold,
+        font-size: 3.125rem,
+        line-height: 3.625rem,
+        letter-spacing: 0
+    ),
+    h2: (
+        font-weight: bold,
+        font-size: 2.375rem,
+        line-height: 2.75rem,
+        letter-spacing: 0
+    ),
+    h3: (
+        font-weight: normal,
+        font-size: 1.5rem,
+        line-height: 1.75rem,
+        letter-spacing: 0
+    ),
+    body: (
+        font-weight: normal,
+        font-size: 1rem,
+        line-height: 1.25rem,
+        letter-spacing: 0
+    )
+);

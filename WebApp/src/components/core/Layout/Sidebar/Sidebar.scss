@@ -1,0 +1,31 @@
+@import '../../../../assets/styles/colors.scss';
+@import '../../../../assets/styles/text.scss';
+
+.srhero__sidebar {
+    display: block;
+    height: 100%;
+    background-color: $bg-tertiary;
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        list-style: none;        
+        padding: 0;
+        li a {
+            display: block;
+            text-decoration: none;
+            padding: 1rem;
+            color: $primary;
+            width: 100%;
+            @include font-style(h3);
+            &:hover {
+                background-color: $main-primary;
+                color: $bg-main;
+            }
+            &:link, &:active {
+                color: $primary;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,27 @@
+@import '../../../assets/styles/colors.scss';
+@import '../../../assets/styles/text.scss';
+
+.srhero__input {
+    @include font-style(body);
+    width: 100%;
+    color: $secondary;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    appearance: none;
+    border: 0.125rem solid $secondary;
+    margin-bottom: 1rem;
+
+    &:focus {
+        outline: none;
+        border: 0.125rem solid $main-primary;
+    }
+}
+
+.srhero__label {
+    display: block;
+    @include font-style(body);
+    color: $primary;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+}

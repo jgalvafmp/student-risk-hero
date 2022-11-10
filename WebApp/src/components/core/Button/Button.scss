@@ -1,0 +1,16 @@
+@import '../../../assets/styles/colors.scss';
+@import '../../../assets/styles/text.scss';
+
+.srhero__button {
+    border: none;
+    background: $main-primary;
+    margin: 0;
+    font: inherit;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    @include font-style(body);
+    padding: 1rem 0.5rem;
+    color: $bg-main;
+    border-radius: 0.5rem;
+}
