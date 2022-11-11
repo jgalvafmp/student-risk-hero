@@ -2,7 +2,7 @@
 Es una solucion web que consta de dos aplicaciones, un web service y una aplicacion web. El web service esta siendo desarrollado en .NET 6 con una arquitectura monolitica para mantener su simplesa, utilizando algunos patrones de diseño para agilizar el desarrollo. Por otro lado la aplicacion web, esta siendo desarrollada utilizando react.js.
 
 ## Links
-- Web app: https://papaya-bubblegum-f1a0c1.netlify.app/
+- Web app: https://student-risk-hero.netlify.app/
 - Web service: http://www.student-risk-hero.somee.com/swagger/index.html
 
 <h2>Security (Seguridad)</h2>
