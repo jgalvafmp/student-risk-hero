@@ -1,4 +1,4 @@
-# student-risk-hero
+# Student Risk Hero
 It's a webservice which will be used to manage the Student Risk Savior App
 
 ## Link
