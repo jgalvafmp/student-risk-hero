@@ -6,16 +6,38 @@
     background-color: $main-primary;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 30px;
     .srhero__card {
         display: flex;
         justify-content: center;
+        height: 470px;
+        form {
+            width: 90%;
+            .logo {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+        }
         h1 {
             @include font-style(h2);
             text-align: center;
             text-transform: uppercase;
             color: $primary;
             margin-bottom: 1rem;
+        }
+        .label-error {
+            display: block;
+            margin-bottom: 1rem;
+            color: $bg-error;
+            font-weight: bold;
+        } 
+        a {
+            display: block;
+            @include font-style(body);
+            text-align: center;
+            padding: 10px;
         }
     }
 }

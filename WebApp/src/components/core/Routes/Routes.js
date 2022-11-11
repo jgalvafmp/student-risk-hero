@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from 'react-router-dom';
+import Home from "../../../pages/Home/Home";
 import Login from '../../../pages/Login/Login';
 import SignUp from '../../../pages/SignUp/SignUp';
 import Users from '../../../pages/Users/Users';
@@ -17,6 +18,11 @@ const Routes = props => {
             <Route path="/users">
                 <Layout>
                     <Users />
+                </Layout>
+            </Route>
+            <Route path="*">
+                <Layout>
+                    <Home />
                 </Layout>
             </Route>
         </React.Fragment>

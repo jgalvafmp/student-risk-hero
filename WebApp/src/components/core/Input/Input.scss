@@ -16,6 +16,10 @@
         outline: none;
         border: 0.125rem solid $main-primary;
     }
+    &.srhero__input--error {
+        border: 0.125rem solid $bg-error;
+        background-color: #e538359a;
+    }
 }
 
 .srhero__label {
@@ -24,4 +28,10 @@
     color: $primary;
     margin-bottom: 0.25rem;
     text-transform: uppercase;
+}
+
+.srhero__input--error-label {
+    display: block;
+    @include font-style(body);
+    color: $bg-error;
 }
