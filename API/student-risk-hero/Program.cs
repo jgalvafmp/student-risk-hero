@@ -9,6 +9,14 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddCors(o => o.AddPolicy("EveryOne", builder =>
+{
+    builder.AllowAnyOrigin();
+    builder.AllowAnyHeader();
+    builder.AllowAnyMethod();
+}));
+
 builder.Services.AddDbContext<StudentRiskHeroContext>(m =>
 {
     m.UseSqlServer(builder.Configuration.GetConnectionString("srhero"));
@@ -78,6 +86,8 @@ else
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("EveryOne");
 
 app.UseHttpsRedirection();
 
