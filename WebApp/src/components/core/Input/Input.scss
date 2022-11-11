@@ -1,37 +1,42 @@
 @import '../../../assets/styles/colors.scss';
 @import '../../../assets/styles/text.scss';
 
-.srhero__input {
-    @include font-style(body);
-    width: 100%;
-    color: $secondary;
-    padding: 0.5rem 0.5rem;
-    border-radius: 0.5rem;
-    background-color: white;
-    appearance: none;
-    border: 0.125rem solid $secondary;
+.srhero__input--container {
+    display: block;
     margin-bottom: 1rem;
 
-    &:focus {
-        outline: none;
-        border: 0.125rem solid $main-primary;
+    .srhero__input {
+        @include font-style(body);
+        width: 100%;
+        color: $secondary;
+        padding: 0.5rem 0.5rem;
+        border-radius: 0.5rem;
+        background-color: white;
+        appearance: none;
+        margin-bottom: 0.2rem;
+        border: 0.125rem solid $secondary;
+    
+        &:focus {
+            outline: none;
+            border: 0.125rem solid $main-primary;
+        }
+        &.srhero__input--error {
+            border: 0.125rem solid $bg-error;
+            background-color: #f19a989a;
+        }
     }
-    &.srhero__input--error {
-        border: 0.125rem solid $bg-error;
-        background-color: #e538359a;
+    
+    .srhero__label {
+        display: block;
+        @include font-style(body);
+        color: $primary;
+        margin-bottom: 0.25rem;
+        text-transform: uppercase;
     }
-}
-
-.srhero__label {
-    display: block;
-    @include font-style(body);
-    color: $primary;
-    margin-bottom: 0.25rem;
-    text-transform: uppercase;
-}
-
-.srhero__input--error-label {
-    display: block;
-    @include font-style(body);
-    color: $bg-error;
+    
+    .srhero__input--error-label {
+        display: block;
+        @include font-style(body);
+        color: $bg-error;
+    }
 }
