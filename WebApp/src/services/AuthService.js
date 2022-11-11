@@ -4,8 +4,8 @@ const AuthService = {
     login: (username, password) => {
         return new Promise((resolve, reject) => {
             HttpService.post(
-                //'http://www.student-risk-hero.somee.com/api/Auth/login',
-                'https://localhost:7006/api/Auth/login',
+                'http://www.student-risk-hero.somee.com/api/Auth/login',
+                //'https://localhost:7006/api/Auth/login',
                 {
                     "username": username,
                     "password": password
