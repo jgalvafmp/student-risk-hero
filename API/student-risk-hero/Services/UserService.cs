@@ -7,8 +7,11 @@ namespace student_risk_hero.Services
 {
     public class UserService : BaseService<User>, IBaseService<User>
     {
-        public UserService(IBaseRepository<User> baseRepository) : base(baseRepository)
+        private readonly IEmailService emailService;
+
+        public UserService(IBaseRepository<User> baseRepository, IEmailService emailService) : base(baseRepository)
         {
+            this.emailService = emailService;
         }
 
         public override User Add(User entity)
@@ -22,7 +25,11 @@ namespace student_risk_hero.Services
 
             entity.Password = Convert.ToBase64String(Encoding.ASCII.GetBytes(entity.Password));
 
-            return base.Add(entity);
+            var createdUser = base.Add(entity);
+
+            emailService.SendNewUserMail(createdUser);
+
+            return createdUser;
         }
     }
 }

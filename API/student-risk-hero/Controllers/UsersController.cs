@@ -35,18 +35,6 @@ namespace student_risk_hero.Controllers
             return Ok(entity);
         }
 
-        [HttpPatch("validate/{Username}")]
-        public IActionResult ValidateUser(string username)
-        {
-            var entity = baseService.Get(user => user.Username == username);
-
-            if (entity == null) return NotFound($"The user with name {username} was not found");
-
-            entity.IsValidated = true;
-
-            return Ok(baseService.Update(entity));
-        }
-
         [HttpPatch("{id}")]
         public IActionResult Patch(Guid id, UserDto data)
         {

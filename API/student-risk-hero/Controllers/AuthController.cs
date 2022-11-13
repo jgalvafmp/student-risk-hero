@@ -2,6 +2,7 @@
 using student_risk_hero.Contracts;
 using student_risk_hero.Data.Models;
 using student_risk_hero.Services.Dtos;
+using System.Text;
 
 namespace student_risk_hero.Controllers
 {
@@ -58,6 +59,34 @@ namespace student_risk_hero.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        [HttpGet("validate/user/{token}")]
+        public IActionResult ValidateUser(string token)
+        {
+            var username = Encoding.UTF8.GetString(Convert.FromBase64String(token));
+
+            var entity = userService.Get(user => user.Username == username);
+
+            if (entity == null) return NotFound($"The user with name {username} was not found");
+
+            entity.IsValidated = true;
+
+            return Ok(userService.Update(entity));
+        }
+
+        [HttpPost("forgot-password/user/{token}")]
+        public IActionResult ForgotPassword(string token, string password)
+        {
+            var username = Encoding.UTF8.GetString(Convert.FromBase64String(token));
+
+            var entity = userService.Get(user => user.Username == username);
+
+            if (entity == null) return NotFound($"The user with name {username} was not found");
+
+            entity.Password = Convert.ToBase64String(Encoding.ASCII.GetBytes(password));
+
+            return Ok(userService.Update(entity));
         }
     }
 }
