@@ -8,7 +8,7 @@
     .srhero__input {
         @include font-style(body);
         width: 100%;
-        color: $secondary;
+        color: $primary;
         padding: 0.5rem 0.5rem;
         border-radius: 0.5rem;
         background-color: white;
@@ -29,7 +29,7 @@
     .srhero__label {
         display: block;
         @include font-style(body);
-        color: $primary;
+        color: $secondary;
         margin-bottom: 0.25rem;
         text-transform: uppercase;
     }

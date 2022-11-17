@@ -6,6 +6,7 @@ import { useState } from 'react';
 import AuthService from '../../services/AuthService';
 import { useHistory, Link } from 'react-router-dom';
 import logo from '../../logo.svg';
+import login from '../../assets/images/login.jpg';
 
 const Login = () => {
     const history = useHistory();
@@ -91,32 +92,39 @@ const Login = () => {
 
     return (
         <div className="srhero__login--container">
-           
-            <div className="col-xs-12 col-md-6 col-lg-4">
+            <div className="col-xs-12 col-md-8 col-lg-8">
                 <Card>
                     <form onSubmit={onLogin}>
                         <div className='logo'>
                             <img src={logo} alt="logo" width={'200px'} />
                         </div>
-                        <div className='content'>
-                            <h1>Login</h1>
-                            <Input 
-                                label="Usuario" 
-                                value={state.Username} 
-                                type="text" 
-                                plaholder="Digite su nombre de usuario"
-                                error={state.errorUsername}
-                                onChange={onInputUsernameChange} />
-                            <Input 
-                                label="Contraseña" 
-                                type="password" 
-                                plaholder="Digite su contraseña"
-                                error={state.errorPassword}
-                                value={state.Password}
-                                onChange={onInputPasswordChange} />
-                            {state.error && <span className='label-error'>{state.error}</span>}
-                            <Button type="submit">Login</Button>
-                            <Link to='sign-up '>Registrarme</Link>
+                        <h1>Login</h1>    
+                        <div className='row'>
+                            <div className='col-xs-3'>
+                                <img src={login} className='login' alt="login" />
+                            </div>
+                            <div className='col-xs-9'>
+                                <div className='content'>                        
+                                    <Input 
+                                        label="Username" 
+                                        value={state.Username} 
+                                        type="text" 
+                                        placeholder="Type your user's name"
+                                        error={state.errorUsername}
+                                        onChange={onInputUsernameChange} />
+                                    <Input 
+                                        label="Password" 
+                                        type="password" 
+                                        placeholder="Type your user's password"
+                                        error={state.errorPassword}
+                                        value={state.Password}
+                                        onChange={onInputPasswordChange} />                                
+                                    {state.error && <span className='label-error'>{state.error}</span>}
+                                    <Button type="submit">Login</Button>
+                                    <Link to='/sign-up'>Registrarme</Link>
+                                    <Link to='/forgot-password'>Olvide mi contraseña</Link>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </Card>

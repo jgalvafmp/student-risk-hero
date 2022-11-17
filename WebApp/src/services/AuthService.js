@@ -1,11 +1,11 @@
 import HttpService from './HttpService';
+import ENV from '../utils/env';
 
 const AuthService = {
     login: (username, password) => {
         return new Promise((resolve, reject) => {
             HttpService.post(
-                'http://www.student-risk-hero.somee.com/api/Auth/login',
-                //'https://localhost:7006/api/Auth/login',
+                `${ENV.apiURL}/Auth/login`,
                 {
                     "username": username,
                     "password": password
@@ -18,7 +18,39 @@ const AuthService = {
         });
     },
     signUp: (userData) => {
-        console.log('signUp!', userData)
+        return new Promise((resolve, reject) => {
+            HttpService.post(
+                `${ENV.apiURL}/Auth/sign-in`,
+                userData
+            ).then(response => {
+                resolve(response)
+            }).catch(error => {
+                reject(error.json());
+            });
+        });
+    },
+    forgotPassword: (password, token) => {
+        return new Promise((resolve, reject) => {
+            HttpService.post(
+                `${ENV.apiURL}/Auth/forgot-password/user/${token}`,
+                { password: password }
+            ).then(response => {
+                resolve(response)
+            }).catch(error => {
+                reject(error.json());
+            });
+        });
+    },
+    activateUser: (user) => {
+        return new Promise((resolve, reject) => {
+            HttpService.post(
+                `${ENV.apiURL}/Auth/validate/user/${user}`,
+            ).then(response => {
+                resolve(response)
+            }).catch(error => {
+                reject(error.json());
+            });
+        });
     }
 }
 

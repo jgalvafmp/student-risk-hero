@@ -6,11 +6,10 @@
     background-color: $main-primary;
     display: flex;
     justify-content: center;
-    padding-top: 30px;
+    align-items: center;
     .srhero__card {
         display: flex;
         justify-content: center;
-        height: 560px;
         form {
             width: 90%;
             .logo {
@@ -20,6 +19,10 @@
                 margin-bottom: 10px;
             }
         }
+        .login {
+            width: 120%;
+            transform: translate(-10%, -10%)
+        } 
         h1 {
             @include font-style(h2);
             text-align: center;
