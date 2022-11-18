@@ -94,16 +94,16 @@ namespace student_risk_hero.Controllers
             return Ok();
         }
 
-        [HttpPut("forgot-password/user/{token}")]
-        public IActionResult ForgotPassword(string token, string password)
+        [HttpPut("forgot-password")]
+        public IActionResult ForgotPassword(ForgetPasswordDto forgetPasswordDto)
         {
-            var username = Cryptography.Decode(token);
+            var username = Cryptography.Decode(forgetPasswordDto.Token);
 
             var entity = userService.Get(user => user.Username == username);
 
             if (entity == null) return NotFound($"The user with name {username} was not found");
 
-            entity.Password = Cryptography.Encode(entity.Password);
+            entity.Password = Cryptography.Encode(forgetPasswordDto.Password);
 
             return Ok(userService.Update(entity));
         }
