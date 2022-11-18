@@ -65,7 +65,7 @@ const ForgotPassword = () => {
         const data = {...state};
 
         if (token) {
-            AuthService.forgotPassword(data.Password, data.token)
+            AuthService.forgotPassword(data.Password, token)
             .then(response => {
                 console.log(response)
                if(response.status === 400) {
@@ -85,7 +85,6 @@ const ForgotPassword = () => {
                         return newState;
                     });
                 }
-                alert('Revisa tu correo')
             });
         }
     }
@@ -138,7 +137,7 @@ const ForgotPassword = () => {
             </div>
         );
     }
-
+    console.log((state.Password !== state.confirmPassword && state.Password > 3) || !token)
     return (
         <div className="srhero__sign-up--container">
             <div className="card--container col-xs-12 col-md-8 col-lg-9">
@@ -159,7 +158,7 @@ const ForgotPassword = () => {
                                         <div className='col-xs-6 col-xs-offset-3'>
                                             <Button 
                                                 type='submit'
-                                                disabled={(state.Password !== state.confirmPassword && state.Password > 3) || !token}>
+                                                disabled={!(!(state.Password !== state.confirmPassword && state.Password > 3) || !token)}>
                                                     {token ? 'Change password' : 'Request new password'}
                                             </Button>
                                             <br />

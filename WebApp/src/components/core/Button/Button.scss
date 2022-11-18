@@ -13,4 +13,10 @@
     padding: 1rem 0.5rem;
     color: $bg-main;
     border-radius: 0.5rem;
+
+    &.srhero__button--disabled {
+        background: $tertiary;
+        color: black;
+        pointer-events: none;
+    }
 }

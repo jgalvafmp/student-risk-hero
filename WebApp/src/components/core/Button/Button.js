@@ -1,10 +1,9 @@
 import './Button.scss';
 
 const Button = props => {
-    console.log(props.disabled)
     return (
         <button
-            className="srhero__button"
+            className={`srhero__button ${props.disabled ? 'srhero__button--disabled' : ''}`}
             type={props.type ? props.type : 'button'}
             disabled={props.disabled}
             onClick={props.onClick}

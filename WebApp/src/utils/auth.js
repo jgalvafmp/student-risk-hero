@@ -1,6 +1,8 @@
+import jwt_decode from "jwt-decode";
+
 const AuthUtil = {
     getTokenData: (token) => {
-        console.log('Token data', token)
+        return jwt_decode(token);
     }
 }
 

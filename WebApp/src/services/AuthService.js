@@ -32,8 +32,8 @@ const AuthService = {
     forgotPassword: (password, token) => {
         return new Promise((resolve, reject) => {
             HttpService.put(
-                `${ENV.apiURL}/Auth/forgot-password/user/${token}`,
-                { password: password }
+                `${ENV.apiURL}/Auth/forgot-password`,
+                { token: token, password: password }
             ).then(response => {
                 resolve(response)
             }).catch(error => {
