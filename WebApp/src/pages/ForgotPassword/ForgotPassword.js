@@ -30,6 +30,16 @@ const ForgotPassword = () => {
         setState((prevState) => {
             const newState = {...prevState};
             newState[field] = event.target.value;
+            if (field === "Password" && newState.Password.length < 4) {
+                newState.errors.Password = "Password length should be 4 characteres or more"
+            } else {
+                newState.errors.Password = undefined;
+            }
+            if (field === "confirmPassword" && newState.confirmPassword !== newState.Password) {
+                newState.errors.confirmPassword = "Confirm password should match password."
+            } else {
+                newState.errors.confirmPassword = undefined;
+            }
             return newState;
         });
     }
@@ -50,18 +60,34 @@ const ForgotPassword = () => {
         history.push('/login')
     }
 
-    const onSignUp = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         const data = {...state};
-        AuthService.forgotPassword(data.Password, data.token)
-        .then(response => {
-            console.log(response)
-           if(response.status === 400) {
-            addValidation(response);
-           } else {
-            alert('created')
-           }
-        });
+
+        if (token) {
+            AuthService.forgotPassword(data.Password, data.token)
+            .then(response => {
+                console.log(response)
+               if(response.status === 400) {
+                addValidation(response);
+               } else {
+                alert('created')
+               }
+            });
+        } else {
+            AuthService.forgetPassword(data.Username)
+            .then(async response => {
+                const res = await response.json();
+                if (res.indexOf("not found") > -1) {
+                    setState(prevState => {
+                        const newState = { ...prevState };
+                        newState.errors.Username = res;
+                        return newState;
+                    });
+                }
+                alert('Revisa tu correo')
+            });
+        }
     }
 
     let form = (
@@ -117,7 +143,7 @@ const ForgotPassword = () => {
         <div className="srhero__sign-up--container">
             <div className="card--container col-xs-12 col-md-8 col-lg-9">
                 <Card>
-                    <form onSubmit={onSignUp}>
+                    <form onSubmit={onSubmit}>
                         <div className='logo'>
                             <img src={logo} alt="logo" width={'200px'} />
                         </div>
@@ -131,7 +157,11 @@ const ForgotPassword = () => {
                                 <div className='button-section col-xs-12'>
                                     <div className='row'>
                                         <div className='col-xs-6 col-xs-offset-3'>
-                                            <Button type='submit'>{token ? 'Change password' : 'Request new password'}</Button>
+                                            <Button 
+                                                type='submit'
+                                                disabled={(state.Password !== state.confirmPassword && state.Password > 3) || !token}>
+                                                    {token ? 'Change password' : 'Request new password'}
+                                            </Button>
                                             <br />
                                             <Button type='click' onClick={returnToLogin}>Return to login</Button>
                                         </div>

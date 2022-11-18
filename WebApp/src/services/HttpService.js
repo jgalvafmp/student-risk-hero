@@ -9,6 +9,25 @@ const HttpService = {
           body: JSON.stringify(data)
         });
     },
+    get: async function get(url = '') {
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
+    },
+    put: async function put(url = '', data = {}) {
+      return fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+  },
     responseHandler: (response, callback) => {
       switch(response.status) {
         case 200:
