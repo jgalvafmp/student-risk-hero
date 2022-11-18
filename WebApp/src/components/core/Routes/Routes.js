@@ -21,10 +21,10 @@ const Routes = props => {
                 <Route path="/validate-account/:user">
                     <ValidateUser />
                 </Route>
-                <Route path="/forgot-password">
+                <Route path="/forgot-password" exact>
                     <ForgotPassword />
                 </Route>
-                <Route path="/forgot-password/user/:token">
+                <Route path="/forgot-password/:token">
                     <ForgotPassword />
                 </Route>
                 <Route path="/users">
