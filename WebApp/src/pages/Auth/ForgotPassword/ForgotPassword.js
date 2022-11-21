@@ -1,10 +1,10 @@
 import '../SignUp/SignUp.scss';
-import Card from '../../components/core/Card/Card';
-import Input from '../../components/core/Input/Input';
-import Button from '../../components/core/Button/Button';
-import AuthService from '../../services/AuthService';
-import logo from '../../logo.svg';
-import readers from '../../assets/images/thinking.png';
+import Card from '../../../components/core/Card/Card';
+import Input from '../../../components/core/Input/Input';
+import Button from '../../../components/core/Button/Button';
+import AuthService from '../../../services/AuthService';
+import logo from '../../../logo.svg';
+import readers from '../../../assets/images/thinking.png';
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 

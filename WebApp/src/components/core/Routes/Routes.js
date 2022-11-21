@@ -1,19 +1,20 @@
 import React from "react";
 import { Route, Switch } from 'react-router-dom';
-import ForgotPassword from "../../../pages/ForgotPassword/ForgotPassword";
+import ForgotPassword from "../../../pages/Auth/ForgotPassword/ForgotPassword";
 import Home from "../../../pages/Home/Home";
-import Login from '../../../pages/Login/Login';
-import SignUp from '../../../pages/SignUp/SignUp';
-import Users from '../../../pages/Users/Users';
-import ValidateUser from "../../../pages/ValidateUser/ValidateUser";
+import Login from '../../../pages/Auth/Login/Login';
+import SignUp from '../../../pages/Auth/SignUp/SignUp';
+import Users from '../../../pages/Auth/Users/Users';
+import ValidateUser from "../../../pages/Auth/ValidateUser/ValidateUser";
 import Layout from "../Layout/Layout";
+import CoursePage from "../../../pages/School/Courses/Course";
 
 const Routes = props => {
     return (
         <React.Fragment>
             <Switch>
                 <Route path="/login">
-                    <Login />
+                <Login />
                 </Route>
                 <Route path="/sign-up">
                     <SignUp />
@@ -30,6 +31,11 @@ const Routes = props => {
                 <Route path="/users">
                     <Layout>
                         <Users />
+                    </Layout>
+                </Route>
+                <Route path="/courses">
+                    <Layout>
+                        <CoursePage />
                     </Layout>
                 </Route>
                 <Route path="*">

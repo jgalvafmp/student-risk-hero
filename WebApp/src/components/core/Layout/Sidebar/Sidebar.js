@@ -14,6 +14,9 @@ const Sidebar = props => {
                 <li>
                     <NavLink activeClassName='active' to='/users'>Users</NavLink>
                 </li>
+                <li>
+                    <NavLink activeClassName='active' to='/courses'>Courses</NavLink>
+                </li>
             </ul>
         </div>
     );
