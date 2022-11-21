@@ -11,48 +11,44 @@ namespace student_risk_hero.Controllers
     public class BlobStoragesController : ControllerBase
     {
         private readonly IBlobStorageService _storage;
-        private readonly string _connectionString;
-        private readonly string _container;
 
-        public BlobStoragesController(IBlobStorageService storage, IConfiguration iConfig)
+        public BlobStoragesController(IBlobStorageService storage)
         {
             _storage = storage;
-            _connectionString = iConfig.GetValue<string>("StorageSettings:StorageConnection");
-            _container = iConfig.GetValue<string>("StorageSettings:ContainerName");
         }
 
         [HttpGet("ListFiles")]
-        public async Task<List<string>> ListFiles()
+        public IActionResult ListFiles()
         {
-            return await _storage.GetAllDocuments(_connectionString, _container);
+            return Ok(_storage.GetAllDocuments());
         }
 
         [Route("InsertFile")]
         [HttpPost]
-        public async Task<bool> InsertFile([FromForm] IFormFile asset)
+        public IActionResult InsertFile([FromForm] IFormFile asset)
         {
             if (asset != null)
             {
                 Stream stream = asset.OpenReadStream();
-                await _storage.UploadDocument(_connectionString, _container, asset.FileName, stream);
-                return true;
+                _storage.UploadDocument(asset.FileName, stream);
+                return Ok(true);
             }
 
-            return false;
+            return Ok(false);
         }
 
         [HttpGet("DownloadFile/{fileName}")]
-        public async Task<IActionResult> DownloadFile(string fileName)
+        public IActionResult DownloadFile(string fileName)
         {
-            var content = await _storage.GetDocument(_connectionString, _container, fileName);
+            var content = _storage.GetDocument(fileName);
             return File(content, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
         [Route("DeleteFile/{fileName}")]
         [HttpGet]
-        public async Task<bool> DeleteFile(string fileName)
+        public IActionResult DeleteFile(string fileName)
         {
-            return await _storage.DeleteDocument(_connectionString, _container, fileName);
+            return Ok(_storage.DeleteDocument(fileName));
         }
     }
 }

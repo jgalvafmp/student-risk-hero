@@ -6,31 +6,41 @@ namespace student_risk_hero.Services
 {
     public class BlobStorageService : IBlobStorageService
     {
-        public async Task<List<string>> GetAllDocuments(string connectionString, string containerName)
+        private readonly string connectionString;
+        private readonly string containerName;
+
+        public BlobStorageService(IConfiguration config)
+        {
+            connectionString = config.GetValue<string>("StorageSettings:StorageConnection");
+            containerName = config.GetValue<string>("StorageSettings:ContainerName");
+        }
+
+        public List<string> GetAllDocuments()
         {
             var container = BlobExtensions.GetContainer(connectionString, containerName);
 
-            if (!await container.ExistsAsync())
+            if (!container.Exists())
             {
                 return new List<string>();
             }
 
             List<string> blobs = new();
 
-            await foreach (BlobItem blobItem in container.GetBlobsAsync())
+            foreach (BlobItem blobItem in container.GetBlobs())
             {
                 blobs.Add(blobItem.Name);
             }
             return blobs;
         }
 
-        public async Task UploadDocument(string connectionString, string containerName, string fileName, Stream fileContent)
+        public void UploadDocument(string fileName, Stream fileContent)
         {
             var container = BlobExtensions.GetContainer(connectionString, containerName);
-            if (!await container.ExistsAsync())
+
+            if (!container.Exists())
             {
                 BlobServiceClient blobServiceClient = new(connectionString);
-                await blobServiceClient.CreateBlobContainerAsync(containerName);
+                blobServiceClient.CreateBlobContainer(containerName);
                 container = blobServiceClient.GetBlobContainerClient(containerName);
             }
 
@@ -38,23 +48,24 @@ namespace student_risk_hero.Services
             if (!bobclient.Exists())
             {
                 fileContent.Position = 0;
-                await container.UploadBlobAsync(fileName, fileContent);
+                container.UploadBlob(fileName, fileContent);
             }
             else
             {
                 fileContent.Position = 0;
-                await bobclient.UploadAsync(fileContent, overwrite: true);
+                bobclient.Upload(fileContent, overwrite: true);
             }
         }
-        public async Task<Stream> GetDocument(string connectionString, string containerName, string fileName)
+
+        public Stream GetDocument(string fileName)
         {
             var container = BlobExtensions.GetContainer(connectionString, containerName);
-            if (await container.ExistsAsync())
+            if (container.Exists())
             {
                 var blobClient = container.GetBlobClient(fileName);
                 if (blobClient.Exists())
                 {
-                    var content = await blobClient.DownloadStreamingAsync();
+                    var content = blobClient.DownloadStreaming();
                     return content.Value.Content;
                 }
                 else
@@ -69,19 +80,19 @@ namespace student_risk_hero.Services
 
         }
 
-        public async Task<bool> DeleteDocument(string connectionString, string containerName, string fileName)
+        public bool DeleteDocument(string fileName)
         {
             var container = BlobExtensions.GetContainer(connectionString, containerName);
-            if (!await container.ExistsAsync())
+            if (!container.Exists())
             {
                 return false;
             }
 
             var blobClient = container.GetBlobClient(fileName);
 
-            if (await blobClient.ExistsAsync())
+            if (blobClient.Exists())
             {
-                await blobClient.DeleteIfExistsAsync();
+                blobClient.DeleteIfExists();
                 return true;
             }
             else

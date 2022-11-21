@@ -1,10 +1,12 @@
-﻿namespace student_risk_hero.Contracts
+﻿using Azure.Storage.Blobs.Models;
+
+namespace student_risk_hero.Contracts
 {
     public interface IBlobStorageService
     {
-        public Task<List<string>> GetAllDocuments(string connectionString, string containerName);
-        Task UploadDocument(string connectionString, string containerName, string fileName, Stream fileContent);
-        Task<Stream> GetDocument(string connectionString, string containerName, string fileName);
-        Task<bool> DeleteDocument(string connectionString, string containerName, string fileName);
+        public List<string> GetAllDocuments();
+        void UploadDocument(string fileName, Stream fileContent);
+        Stream GetDocument(string fileName);
+        bool DeleteDocument(string fileName);
     }
 }
