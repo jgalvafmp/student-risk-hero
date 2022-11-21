@@ -2,7 +2,7 @@
 {
     public class CourseGrades : BaseEntity
     {
-        public int StudentId { get; set; }
+        public Guid StudentId { get; set; }
         public string Subject { get; set; }
         public decimal Grade { get; set; }
     }

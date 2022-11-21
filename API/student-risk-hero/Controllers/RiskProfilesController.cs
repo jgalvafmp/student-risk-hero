@@ -65,7 +65,7 @@ namespace student_risk_hero.Controllers
         public IActionResult UpdateEntry(
             [FromRoute] Guid riskProfileId,
             [FromRoute] Guid entryId,
-            [FromBody] RiskProfileEntries entity)
+            [FromBody] RiskProfileEntryDto entity)
         {
             baseService.UpdateEntry(riskProfileId, entryId, entity);
 
@@ -75,7 +75,7 @@ namespace student_risk_hero.Controllers
         [HttpPost("{riskProfileId}/evidence")]
         public IActionResult AddEvidence(
             [FromRoute] Guid riskProfileId,
-            [FromBody] RiskProfileEvidence entity)
+            [FromBody] RiskProfileEvidenceDto entity)
         {
             baseService.AddEvidence(riskProfileId, entity);
 

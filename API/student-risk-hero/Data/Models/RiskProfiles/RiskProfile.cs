@@ -2,7 +2,7 @@
 {
     public class RiskProfile:BaseEntity
     {
-        public int StudentId { get; set; }
+        public Guid StudentId { get; set; }
         public string Risk { get; set; }
         public string Description { get; set; }
 

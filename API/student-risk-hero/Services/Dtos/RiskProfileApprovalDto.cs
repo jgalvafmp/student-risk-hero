@@ -4,13 +4,13 @@ namespace student_risk_hero.Services.Dtos
 {
     public class RiskProfileApprovalDto
     {
-        public int RequestId { get; set; }
+        public Guid RiskProfileId { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
 
-        public int? TeacherId { get; set; }
-        public int? CounselorId { get; set; }
-        public int? DirectorId { get; set; }
+        public Guid? TeacherId { get; set; }
+        public Guid? CounselorId { get; set; }
+        public Guid? DirectorId { get; set; }
 
         private string approvalType;
         public string ApprovalType
@@ -27,5 +27,12 @@ namespace student_risk_hero.Services.Dtos
                     approvalType = null;
             }
         }
+
+        public DateTime? TeachersApprovalDate { get; internal set; }
+        public bool? TeachersApproval { get; internal set; }
+        public bool? DirectorApproval { get; internal set; }
+        public DateTime? DirectorApprovalDate { get; internal set; }
+        public bool? ParentsApproval { get; internal set; }
+        public DateTime? ParentsApprovalDate { get; internal set; }
     }
 }

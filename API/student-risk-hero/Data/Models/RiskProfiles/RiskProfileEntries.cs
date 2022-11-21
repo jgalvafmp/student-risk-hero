@@ -2,14 +2,15 @@
 {
     public class RiskProfileEntries :BaseEntity
     {
-        public int RiskProfileId { get; set; }
+        public Guid RiskProfileId { get; set; }
         public string Finding { get; set; }
         public string Description { get; set; }
         public bool IsClosingFinding { get; set; }
+        public DateTime Date { get; set; }
 
-        public int? TeacherId { get; set; }
-        public int? CounselorId { get; set; }
-        public int? DirectorId { get; set; }
+        public Guid? TeacherId { get; set; }
+        public Guid? CounselorId { get; set; }
+        public Guid? DirectorId { get; set; }
 
         private string assistantType;
         public string AssistantType
@@ -26,5 +27,7 @@
                     assistantType = null;
             }
         }
+
+        public string ActionerId { get; internal set; }
     }
 }

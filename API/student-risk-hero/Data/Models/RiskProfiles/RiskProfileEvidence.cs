@@ -2,7 +2,7 @@
 {
     public class RiskProfileEvidence : BaseEntity
     {
-        public int RiskProfileId { get; set; }
+        public Guid RiskProfileId { get; set; }
         public string BlobUrl { get; set; }
     }
 }
