@@ -1,12 +1,12 @@
-import Card from '../../components/core/Card/Card';
-import Input from '../../components/core/Input/Input';
-import Button from '../../components/core/Button/Button';
+import Card from '../../../components/core/Card/Card';
+import Input from '../../../components/core/Input/Input';
+import Button from '../../../components/core/Button/Button';
 import './Login.scss';
 import { useState } from 'react';
-import AuthService from '../../services/AuthService';
+import AuthService from '../../../services/AuthService';
 import { useHistory, Link } from 'react-router-dom';
-import logo from '../../logo.svg';
-import login from '../../assets/images/login.jpg';
+import logo from '../../../logo.svg';
+import login from '../../../assets/images/login.jpg';
 
 const Login = () => {
     const history = useHistory();

@@ -1,0 +1,55 @@
+@import '../../../assets//styles/colors.scss';
+@import '../../../assets//styles/text.scss';
+
+.srhero__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.75);
+  }
+  
+  .srhero__modal {
+    position: fixed;
+    top: 30vh;
+    left: 10%;
+    width: 80%;
+    z-index: 100;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: $bg-main;
+
+    .srhero__modal--header {
+      background: $main-primary;
+      padding: 1rem;
+      h2 {
+        margin: 0;
+        color: white;
+        @include font-style(h2);
+      }
+    }
+    
+    .srhero__modal--content {
+      padding: 1rem;
+    }
+    
+    .srhero__modal--actions {
+      padding: 1rem;
+      display: flex;
+      justify-content: flex-end;
+      button {
+        width: 200px;
+        margin-right: 0.2rem;
+      }
+    }
+  }
+  
+  
+  @media (min-width: 768px) {
+    .modal {
+      left: calc(50% - 20rem);
+      width: 40rem;
+    }
+  }

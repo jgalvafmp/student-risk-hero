@@ -1,10 +1,10 @@
 import '../SignUp/SignUp.scss';
-import Card from '../../components/core/Card/Card';
-import logo from '../../logo.svg';
-import Button from '../../components/core/Button/Button';
+import Card from '../../../components/core/Card/Card';
+import logo from '../../../logo.svg';
+import Button from '../../../components/core/Button/Button';
 import { useHistory, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import AuthService from '../../services/AuthService';
+import AuthService from '../../../services/AuthService';
 
 
 const ValidateUser = () => {
