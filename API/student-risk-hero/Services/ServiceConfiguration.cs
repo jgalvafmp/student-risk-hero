@@ -12,6 +12,7 @@ namespace student_risk_hero.Services
             services.AddScoped<IBaseService<Student>, BaseService<Student>>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IBlobStorageService, BlobStorageService>();
         }
     }
 }
