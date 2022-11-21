@@ -41,7 +41,7 @@ namespace student_risk_hero.Services
             {
                 var createdUser = base.Add(entity);
 
-                emailService.SendNewUserMail(createdUser, "Welcome to Student Risk Hero", EmailTypes.Welcoming);
+                emailService.SendNewUserMail(createdUser, "Welcome to Student Risk Hero", EmailTypesEnum.Welcoming);
 
                 trans.Commit();
 

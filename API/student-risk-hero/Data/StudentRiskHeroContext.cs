@@ -4,6 +4,7 @@
     using Microsoft.EntityFrameworkCore.ChangeTracking;
     using student_risk_hero.Contracts;
     using student_risk_hero.Data.Models;
+    using student_risk_hero.Data.Models.RiskProfiles;
 
     public class StudentRiskHeroContext : DbContext
     {
@@ -48,7 +49,22 @@
 
         #endregion
 
+        // Security
         public DbSet<User> Users { get; set; }
+
+        // Main Actors
         public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Director> Directors { get; set; }
+        public DbSet<Counselor> Counselors { get; set; }
+
+        // School related
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<CourseGrades> CourseGrades { get; set; }
+
+        // Main Process
+        public DbSet<RiskProfile> RiskProfiles { get; set; }
+        public DbSet<RiskProfileEntries> RiskProfileEntries { get; set; }
+        public DbSet<RiskProfileEvidence> RiskProfileEvidences { get; set; }
     }
 }

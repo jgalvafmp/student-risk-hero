@@ -7,7 +7,7 @@ namespace student_risk_hero.Services.EmailServices
 {
     public class EmailService : IEmailService
     {
-        public void SendNewUserMail(User user, string subject, EmailTypes emailType)
+        public void SendNewUserMail(User user, string subject, EmailTypesEnum emailType)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace student_risk_hero.Services.EmailServices
 
                 switch(emailType)
                 {
-                    case EmailTypes.Welcoming:
+                    case EmailTypesEnum.Welcoming:
                         newMail.Body = EmailTemplates.BasicTemplate("Welcome to Student Risk Hero",
                              new string[] {
                                  $"Hello {user.Firstname}",
@@ -33,7 +33,7 @@ namespace student_risk_hero.Services.EmailServices
                              }
                             , $"{ENV.WEBAPP_URL}/validate-account/{Cryptography.Encode(user.Username)}");
                         break;
-                    case EmailTypes.ForgettingPassword:
+                    case EmailTypesEnum.ForgettingPassword:
                         newMail.Body = EmailTemplates.BasicTemplate("Welcome to Student Risk Hero",
                              new string[] {
                                  $"Hello {user.Firstname}",
