@@ -1,7 +1,78 @@
 @import '../../../../assets/styles/colors.scss';
+@import '../../../../assets/styles/text.scss';
 
 .srhero__header {
-    width: 100%;
+    display: flex;
     height: 5rem;
+    justify-content: space-between;
+    align-items: center;
     background-color: $main-primary;
+
+    .srhero__header--logo {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        @include font-style(h3);
+        font-weight: bolder;
+        color: $bg-main;
+        a:link {
+            color: $bg-main;
+            text-decoration: none;
+            text-transform: none;
+        }
+        a:active {
+            color: $bg-main;
+        }
+        a:visited {
+            color: $bg-main;
+        }
+        img {
+            margin-left: 1rem;
+            width: 100px;
+        }
+    }
+
+    .srhero__header--user-profile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        img {
+            width: 60px;
+            margin-right: 1rem;
+        }
+        .srhero__profile {
+            display: flex;
+            align-items: center;
+            margin-right: 2rem;
+            span {
+                display: block;
+                @include font-style(body);
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: $bg-main;
+                &.label-user-profile {
+                    font-size: 1rem;
+                    font-weight: normal;
+                }
+            }
+        }
+        
+    }
+
+    button {
+        font: inherit;
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+        font-weight: bold;
+        padding: 0.5rem 1.5rem;
+        border-radius: 6px;
+        cursor: pointer;
+        height: 2.5rem;
+          
+        &:hover {
+            background-color: $main-secondary;
+            color: white;
+        }
+    }
 }
