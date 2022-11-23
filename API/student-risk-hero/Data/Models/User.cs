@@ -8,7 +8,9 @@
         public bool? IsValidated { get; set; }
         public string? Firstname { get; set; }
         public string? Lastname { get; set; }
-        public DateTime? Birthdate { get; set; }
+        public string? Gender { get; set; }
+
+        public string FullName => $"{Firstname} {Lastname}";
 
         private string role;
         public string Role { get => role; 

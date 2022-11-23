@@ -1,17 +1,22 @@
-import AuthUtil from "../../utils/auth";
+import { useContext } from "react";
+import { useHistory } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
+
 
 const Home = () => {
+    const authCtx = useContext(AuthContext);
+    const history = useHistory();
 
-    const token = localStorage.getItem('token');
-    let user = AuthUtil.getTokenData(token);
+    console.log('HOME COMPONENT')
+    console.log(!authCtx.isLoggedIn)
+
+    if(!authCtx.isLoggedIn) {
+        history.replace('/login');
+    }
 
     return (
         <>
             <h1>Home page</h1>
-            <ul>
-                <li>User: {user["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}</li>
-                <li>Role: {user["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]}</li>
-            </ul>
         </>
     );
 }

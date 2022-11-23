@@ -45,7 +45,7 @@ namespace student_risk_hero.Controllers
             entity.Firstname = data.Firstname;
             entity.Lastname = data.Lastname;
             entity.Username = data.Username;
-            entity.Birthdate = data.Birthdate;
+            entity.Gender = data.Gender;
 
             return Ok(baseService.Update(entity));
         }
