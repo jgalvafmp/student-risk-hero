@@ -29,19 +29,19 @@
                     if (auditableEntity.State == EntityState.Added)
                     {
                         auditableEntity.Entity.CreatedAt = DateTime.Now;
-                        auditableEntity.Entity.CreatedBy = currentUser.UserId.Value;
+                        if(currentUser.UserId.HasValue) auditableEntity.Entity.CreatedBy = currentUser.UserId.Value;
                     }
 
                     if (auditableEntity.State == EntityState.Modified)
                     {
                         auditableEntity.Entity.UpdatedAt = DateTime.Now;
-                        auditableEntity.Entity.UpdatedBy = currentUser.UserId.Value;
+                        auditableEntity.Entity.UpdatedBy = currentUser.UserId.HasValue ? currentUser.UserId.Value : null;
                     }
 
                     if (auditableEntity.State == EntityState.Deleted)
                     {
                         auditableEntity.Entity.DeletedAt = DateTime.Now;
-                        auditableEntity.Entity.DeletedBy = currentUser.UserId.Value;
+                        auditableEntity.Entity.DeletedBy = currentUser.UserId.HasValue ? currentUser.UserId.Value : null;
                         auditableEntity.Entity.IsDeleted = true;
                     }
                 }

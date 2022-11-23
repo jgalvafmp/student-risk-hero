@@ -1,6 +1,7 @@
 import useInput from "../../../../hooks/use-input";
 import Input from "../../../../components/core/Input/Input";
 import Button from "../../../../components/core/Button/Button";
+import useHttp from "../../../../hooks/use-http";
 
 const CourseForm = () => {
     const {
@@ -19,13 +20,25 @@ const CourseForm = () => {
         setValue: setDescriptionValue
     } = useInput();
 
+    const http = useHttp({ url: 'courses' });
+
     const formIsValid = nameIsValid && descriptionIsValid;
 
     const submitHandler = (e) => {
         e.preventDefault();
 
         if (formIsValid) {
-            console.log('submit')
+            const data = {
+                name, 
+                description,
+                school: 'Someone',
+                start: new Date(),
+                end: new Date()
+            }
+
+            http.sendRequest(data, 'POST').then(data => {
+                console.log(data)
+            });
         }
     }
 
@@ -48,8 +61,8 @@ const CourseForm = () => {
                     type="text" 
                     placeholder="Type your the course description"
                     error={descriptionError}
-                    onChange={setDescriptionIsTouched}
-                    onBlur={setDescriptionValue} />
+                    onChange={setDescriptionValue}
+                    onBlur={setDescriptionIsTouched} />
             </div>
             <div className="col-xs-12">
                 <div style={{width: '150px'}}>

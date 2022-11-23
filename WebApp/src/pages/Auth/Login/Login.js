@@ -1,15 +1,15 @@
 import { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
-import Card from '../../components/core/Card/Card';
-import Input from '../../components/core/Input/Input';
-import Button from '../../components/core/Button/Button';
-import AuthService from '../../services/AuthService';
-import logo from '../../logo.svg';
-import login from '../../assets/images/login.jpg';
+import Card from '../../../components/core/Card/Card';
+import Input from '../../../components/core/Input/Input';
+import Button from '../../../components/core/Button/Button';
+import AuthService from '../../../services/AuthService';
+import logo from '../../../logo.svg';
+import login from '../../../assets/images/login.jpg';
 
 import './Login.scss';
-import AuthContext from '../../store/auth-context';
+import AuthContext from '../../../store/auth-context';
 
 const Login = () => {
     const authCtx = useContext(AuthContext);
@@ -66,7 +66,6 @@ const Login = () => {
 
     const addValidation = (data) => {
         data.json().then(error => {
-            console.log(error)
             if(error.toString().indexOf('Username') > -1){
                 setState((prevState) => {
                     return {

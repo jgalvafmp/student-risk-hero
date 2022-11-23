@@ -1,45 +1,16 @@
 import React from "react";
-import { Route, Switch } from 'react-router-dom';
-import ForgotPassword from "../../../pages/Auth/ForgotPassword/ForgotPassword";
 import { Redirect, Route, Switch } from 'react-router-dom';
-import ForgotPassword from "../../../pages/ForgotPassword/ForgotPassword";
+import ForgotPassword from "../../../pages/Auth/ForgotPassword/ForgotPassword";
 import Home from "../../../pages/Home/Home";
 import Login from '../../../pages/Auth/Login/Login';
 import SignUp from '../../../pages/Auth/SignUp/SignUp';
 import Users from '../../../pages/Auth/Users/Users';
 import ValidateUser from "../../../pages/Auth/ValidateUser/ValidateUser";
-import Login from '../../../pages/Login/Login';
-import SignUp from '../../../pages/SignUp/SignUp';
-import Users from '../../../pages/Users/Users';
-import ValidateUser from "../../../pages/ValidateUser/ValidateUser";
 import AuthContext from "../../../store/auth-context";
 import Layout from "../Layout/Layout";
-import CoursePage from "../../../pages/School/Courses/Course";
 import { useContext } from 'react';
+import CoursePage from '../../../pages/School/Courses/Course';
 
-const Routes = props => {
-    return (
-        <React.Fragment>
-            <Switch>
-                <Route path="/login">
-                <Login />
-                </Route>
-                <Route path="/sign-up">
-                    <SignUp />
-                </Route>
-                <Route path="/validate-account/:user">
-                    <ValidateUser />
-                </Route>
-                <Route path="/forgot-password" exact>
-                    <ForgotPassword />
-                </Route>
-                <Route path="/forgot-password/:token">
-                    <ForgotPassword />
-                </Route>
-                <Route path="/users">
-                    <Layout>
-                        <Users />
-                    </Layout>
 const Routes = () => {
     const authCtx = useContext(AuthContext)
 
@@ -66,7 +37,12 @@ const Routes = () => {
             <Layout>
                 <Users />
             </Layout>
-        </Route>,      
+        </Route>,
+        <Route path="/courses" key="/courses">
+            <Layout>
+                <CoursePage />
+            </Layout>
+        </Route>
     ];
 
 
@@ -78,11 +54,8 @@ const Routes = () => {
                         <Home />
                     </Layout>
                 </Route>
-                <Route path="/courses">
-                    <Layout>
-                        <CoursePage />
-                    </Layout>
-                </Route>
+                {unathorizedUrls}
+                {authCtx.isLoggedIn && authorizedUrls}
                 <Route path="*">
                     <Layout>
                         <Redirect to={'/'} />
@@ -92,5 +65,5 @@ const Routes = () => {
         </React.Fragment>
     );
 }
-
+    
 export default Routes;

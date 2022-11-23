@@ -19,7 +19,7 @@ const SignUp = () => {
             Email: '',
             Firstname: '',
             Lastname: '',
-            Birthdate: '',
+            Gender: '',
             Role: '',
             errors: {
                 Username: undefined,
@@ -27,7 +27,7 @@ const SignUp = () => {
                 Password: undefined,
                 Firstname: undefined,
                 Lastname: undefined,
-                Birthdate: undefined,
+                Gender: undefined,
                 Role: undefined,
             }
         }
@@ -72,7 +72,7 @@ const SignUp = () => {
                 Password: undefined,
                 Firstname: undefined,
                 Lastname: undefined,
-                Birthdate: undefined,
+                Gender: undefined,
                 Role: undefined,
             }
             return newState;
@@ -83,8 +83,6 @@ const SignUp = () => {
         e.preventDefault();
         deleteErrors();
         const data = {...state};
-        const input = data.Birthdate.split('-');
-        data.Birthdate = new Date(input[0], input[1], input[2]);
         delete data.errors;
         AuthService.signUp(data)
         .then(async response => {
@@ -140,12 +138,15 @@ const SignUp = () => {
                                         </div>
                                         <div className='col-xs-12 col-md-6 col-lg-6'>
                                             <Input 
-                                                label="Birthdate" 
-                                                value={state.Birthdate} 
-                                                type="date" 
-                                                placeholder="Type your birthdate"
-                                                error={state.errors.Birthdate}
-                                                onChange={(e) => {onInputChange(e, 'Birthdate')}} />
+                                                label="Gender" 
+                                                value={state.Gender} 
+                                                type="dropdown" 
+                                                placeholder="Select your gender"
+                                                error={state.errors.Role}
+                                                onChange={(e) => {onInputChange(e, 'Gender')}}>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                            </Input>
                                         </div>
                                         <div className='col-xs-12 col-md-6 col-lg-6'>
                                             <Input 

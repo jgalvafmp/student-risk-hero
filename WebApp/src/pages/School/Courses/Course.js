@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../../../components/core/Button/Button";
 import Modal from "../../../components/core/Modal/Modal";
 import CourseForm from "./CourseForm/CourseForm";
+import useHttp from "../../../hooks/use-http";
 
 const CoursePage = () => {
     const [openForm, setOpenForm] = useState(false);
+    const [courses, setCourses] = useState(null);
+
+    const http = useHttp({ url: 'courses' });
 
     const cancelHandler = () => {
         setOpenForm(false)
@@ -16,6 +20,16 @@ const CoursePage = () => {
                 >
                     <CourseForm />
                 </Modal>
+
+    useEffect(() => {
+        if(!courses) {
+            http.sendRequest().then(res => res.json()).then(
+                data => {
+                    console.log(data)
+                }
+            );
+        }
+    });
 
     return (
         <React.Fragment>
