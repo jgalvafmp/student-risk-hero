@@ -8,8 +8,11 @@
 
     public class StudentRiskHeroContext : DbContext
     {
-        public StudentRiskHeroContext(DbContextOptions<StudentRiskHeroContext> options) : base(options)
+        private readonly ICurrentUserService currentUser;
+
+        public StudentRiskHeroContext(DbContextOptions<StudentRiskHeroContext> options, ICurrentUserService currentUser) : base(options)
         {
+            this.currentUser = currentUser;
         }
 
         #region Save Changes
@@ -26,19 +29,19 @@
                     if (auditableEntity.State == EntityState.Added)
                     {
                         auditableEntity.Entity.CreatedAt = DateTime.Now;
-                        auditableEntity.Entity.CreatedBy = 0;
+                        auditableEntity.Entity.CreatedBy = currentUser.UserId.Value;
                     }
 
                     if (auditableEntity.State == EntityState.Modified)
                     {
                         auditableEntity.Entity.UpdatedAt = DateTime.Now;
-                        auditableEntity.Entity.UpdatedBy = 0;
+                        auditableEntity.Entity.UpdatedBy = currentUser.UserId.Value;
                     }
 
                     if (auditableEntity.State == EntityState.Deleted)
                     {
                         auditableEntity.Entity.DeletedAt = DateTime.Now;
-                        auditableEntity.Entity.DeletedBy = 0;
+                        auditableEntity.Entity.DeletedBy = currentUser.UserId.Value;
                         auditableEntity.Entity.IsDeleted = true;
                     }
                 }

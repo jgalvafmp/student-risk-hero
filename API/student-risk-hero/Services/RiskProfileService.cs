@@ -22,7 +22,7 @@ namespace student_risk_hero.Services
 
         public override RiskProfile Add(RiskProfile entity)
         {
-            if (entity.StudentId > 0) throw new ArgumentNullException("StudentId cannot be null or 0");
+            if (entity.StudentId != null) throw new ArgumentNullException("StudentId cannot be null or 0");
             if (string.IsNullOrEmpty(entity.Risk)) throw new ArgumentNullException("Risk cannot be null");
 
             entity.State = nameof(RiskProfileStatesEnum.Draft);

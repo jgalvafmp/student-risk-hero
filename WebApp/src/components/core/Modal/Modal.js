@@ -15,7 +15,6 @@ const ModalCard = (props) => {
                 {props.children}
             </div>
             <footer className='srhero__modal--actions'>
-                <Button onClick={props.onSubmit}>Submit</Button>
                 <Button onClick={props.onCancel}>Cancel</Button>
             </footer>
         </div>
@@ -32,7 +31,6 @@ export const Modal = props => {
             {ReactDOM.createPortal(
                 <ModalCard 
                     title={props.title}
-                    onSubmit={props.onSubmit}
                     onCancel={props.onCancel}
                 >
                     {props.children}
