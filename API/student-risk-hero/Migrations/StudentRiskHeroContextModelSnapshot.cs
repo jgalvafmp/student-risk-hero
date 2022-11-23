@@ -446,9 +446,6 @@ namespace studentriskhero.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("Birthdate")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -465,6 +462,9 @@ namespace studentriskhero.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Firstname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsDeleted")

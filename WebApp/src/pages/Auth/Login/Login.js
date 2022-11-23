@@ -1,14 +1,18 @@
-import Card from '../../../components/core/Card/Card';
-import Input from '../../../components/core/Input/Input';
-import Button from '../../../components/core/Button/Button';
-import './Login.scss';
-import { useState } from 'react';
-import AuthService from '../../../services/AuthService';
+import { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import logo from '../../../logo.svg';
-import login from '../../../assets/images/login.jpg';
+
+import Card from '../../components/core/Card/Card';
+import Input from '../../components/core/Input/Input';
+import Button from '../../components/core/Button/Button';
+import AuthService from '../../services/AuthService';
+import logo from '../../logo.svg';
+import login from '../../assets/images/login.jpg';
+
+import './Login.scss';
+import AuthContext from '../../store/auth-context';
 
 const Login = () => {
+    const authCtx = useContext(AuthContext);
     const history = useHistory();
     const [state, setState] = useState({
         Username: '',
@@ -43,8 +47,8 @@ const Login = () => {
             switch(data.status) {
                 case 200:
                     data.json().then((token) => {
-                        localStorage.setItem('token', token);
-                        history.push('/')
+                        authCtx.login(token);
+                        history.replace('/');
                     })
                   break;
                 case 400:

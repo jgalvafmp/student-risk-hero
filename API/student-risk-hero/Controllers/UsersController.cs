@@ -46,8 +46,7 @@ namespace student_risk_hero.Controllers
             entity.Lastname = data.Lastname;
 
             if (data.Username != null && baseService.Exists(x => x.Username != data.Username)) entity.Username = data.Username;
-
-            entity.Birthdate = data.Birthdate;
+            entity.Gender = data.Gender;
 
             return Ok(baseService.Update(entity));
         }
