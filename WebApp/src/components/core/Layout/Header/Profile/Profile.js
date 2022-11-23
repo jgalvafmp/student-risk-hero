@@ -12,8 +12,6 @@ const Profile = props => {
     const authCtx = useContext(AuthContext);
     const profile = AuthUtil.getTokenData(authCtx.token);
 
-    console.log(profile)
-
     let profileContent = <div className="srhero__profile"><Link to='/login'>You need to login</Link></div>
 
     if (profile) {

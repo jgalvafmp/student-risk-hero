@@ -1,14 +1,15 @@
 import React from "react";
 import { Redirect, Route, Switch } from 'react-router-dom';
-import ForgotPassword from "../../../pages/ForgotPassword/ForgotPassword";
+import ForgotPassword from "../../../pages/Auth/ForgotPassword/ForgotPassword";
 import Home from "../../../pages/Home/Home";
-import Login from '../../../pages/Login/Login';
-import SignUp from '../../../pages/SignUp/SignUp';
-import Users from '../../../pages/Users/Users';
-import ValidateUser from "../../../pages/ValidateUser/ValidateUser";
+import Login from '../../../pages/Auth/Login/Login';
+import SignUp from '../../../pages/Auth/SignUp/SignUp';
+import Users from '../../../pages/Auth/Users/Users';
+import ValidateUser from "../../../pages/Auth/ValidateUser/ValidateUser";
 import AuthContext from "../../../store/auth-context";
 import Layout from "../Layout/Layout";
 import { useContext } from 'react';
+import CoursePage from '../../../pages/School/Courses/Course';
 
 const Routes = () => {
     const authCtx = useContext(AuthContext)
@@ -36,7 +37,12 @@ const Routes = () => {
             <Layout>
                 <Users />
             </Layout>
-        </Route>,      
+        </Route>,
+        <Route path="/courses" key="/courses">
+            <Layout>
+                <CoursePage />
+            </Layout>
+        </Route>
     ];
 
 
@@ -59,5 +65,5 @@ const Routes = () => {
         </React.Fragment>
     );
 }
-
+    
 export default Routes;

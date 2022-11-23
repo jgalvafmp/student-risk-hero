@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using student_risk_hero.Services.Dtos;
+using System.Linq.Expressions;
 
 namespace student_risk_hero.Contracts
 {

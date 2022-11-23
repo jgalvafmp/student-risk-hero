@@ -1,0 +1,49 @@
+@import '../../../assets/styles/text.scss';
+@import '../../../assets/styles/colors.scss';
+
+body {
+   background-color: $main-primary;
+}
+
+.srhero__sign-up--container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    .card--container {
+        min-height: 90%;
+        .srhero__card {
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            form {
+                width: 90%;
+                .logo {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 10px;
+                }
+                .readers {
+                    width: 100%;
+                }
+                h1 {
+                    @include font-style(h2);
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: $primary;
+                    margin-bottom: 1rem;
+                }
+                h2 {
+                    @include font-style(h3);
+                    text-transform: uppercase;
+                    color: $primary;
+                    margin: 1rem 0;
+                }
+                .button-section {
+                    margin: 0 2rem;
+                }
+            }
+        }
+    }
+}

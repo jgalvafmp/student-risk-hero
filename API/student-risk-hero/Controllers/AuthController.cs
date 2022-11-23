@@ -89,7 +89,7 @@ namespace student_risk_hero.Controllers
 
             if (entity == null) return NotFound($"The user with name {username} was not found");
 
-            EmailService.SendNewUserMail(entity, "Forgot your password in Student Risk Hero", EmailTypes.ForgettingPassword);
+            EmailService.SendNewUserMail(entity, "Forgot your password in Student Risk Hero", EmailTypesEnum.ForgettingPassword);
 
             return Ok();
         }
