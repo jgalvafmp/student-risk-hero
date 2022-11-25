@@ -17,6 +17,8 @@ namespace student_risk_hero.Data.Repositories
 
         public T Add(T entity)
         {
+            entity.IsDeleted = false;
+
             _dbSet.Add(entity);
 
             _context.SaveChanges();
