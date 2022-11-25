@@ -2,13 +2,13 @@ import { useContext, useState } from 'react'
 import AuthContext from '../store/auth-context';
 import ENV from '../utils/env';
 
-const useHttp = (config) => {
+const useHttp = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const authCtx = useContext(AuthContext);
 
-    const sendRequest = async (data, method) => {
+    const sendRequest = async (config,data, method) => {
         setIsLoading(true);
         setError(null);
 
@@ -34,7 +34,7 @@ const useHttp = (config) => {
         } catch(error) {
             throw new Error("Invalid operation");
         }
-    }
+    };
 
     return {
         sendRequest,

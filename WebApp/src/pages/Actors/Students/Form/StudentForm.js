@@ -5,7 +5,7 @@ import useHttp from "../../../../hooks/use-http";
 import { SuccessAlert } from "../../../../services/AlertService";
 import { useEffect, useState } from "react";
 
-const CourseForm = (props) => {
+const StudentForm = (props) => {
     const [currentEntity, setCurrentEntity] = useState(undefined);
 
     const {
@@ -174,4 +174,4 @@ const CourseForm = (props) => {
     );
 }
 
-export default CourseForm;
+export default StudentForm;

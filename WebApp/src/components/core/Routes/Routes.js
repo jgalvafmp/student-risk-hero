@@ -10,6 +10,7 @@ import AuthContext from "../../../store/auth-context";
 import Layout from "../Layout/Layout";
 import { useContext } from 'react';
 import CoursePage from '../../../pages/School/Courses/Course';
+import StudentPage from "../../../pages/Actors/Students/Students";
 
 const Routes = () => {
     const authCtx = useContext(AuthContext)
@@ -41,6 +42,11 @@ const Routes = () => {
         <Route path="/courses" key="/courses">
             <Layout>
                 <CoursePage />
+            </Layout>
+        </Route>,
+        <Route path="/students" key="/students">
+            <Layout>
+                <StudentPage />
             </Layout>
         </Route>
     ];
