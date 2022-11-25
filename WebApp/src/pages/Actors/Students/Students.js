@@ -9,8 +9,8 @@ import StudentForm from "./Form/StudentForm";
 const StudentPage = () => {
     const api = "students";
     const module = "Student";
-    const header = ['School', 'Name', 'Description', 'Start', 'End', ''];
-    const rows = ['school', 'name', 'description', 'start', 'end', 'options'];
+    const header = ['Firstname', 'Lastname', 'Birthdate', 'Course', ''];
+    const rows = ['firstname', 'lastname', 'birthdate', 'course', 'options'];
 
     const [openForm, setOpenForm] = useState(false);
     const [Students, setStudents] = useState([]);
@@ -72,7 +72,7 @@ const StudentPage = () => {
             
             <div className="row">
                 <div className="col-xs-6">
-                    <h1>{module}</h1>
+                    <h1>{module}s</h1>
                 </div>
                 <div className="col-xs-6 align-end">
                     <div style={{width: "200px" }}>

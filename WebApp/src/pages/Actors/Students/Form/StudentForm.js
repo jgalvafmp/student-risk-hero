@@ -6,7 +6,11 @@ import { SuccessAlert } from "../../../../services/AlertService";
 import { useEffect, useState } from "react";
 
 const StudentForm = (props) => {
+    const api = "students";
+    const module = "Student";
+
     const [currentEntity, setCurrentEntity] = useState(undefined);
+    const [courses, setCourses] = useState([]);
 
     const {
         value: name,
@@ -14,53 +18,53 @@ const StudentForm = (props) => {
         isValid: nameIsValid,
         setIsTouched: setNameIsTouched,
         setValue: setNameValue
-    } = useInput(value => value.trim() !== '', 'The name input is required');
+    } = useInput(value => value.trim() !== '', 'The firstname input is required');
 
     const {
-        value: description,
-        hasError: descriptionError,
-        isValid: descriptionIsValid,
-        setIsTouched: setDescriptionIsTouched,
-        setValue: setDescriptionValue
-    } = useInput();
+        value: lastname,
+        hasError: lastnameError,
+        isValid: lastnameIsValid,
+        setIsTouched: setlastnameIsTouched,
+        setValue: setlastnameValue
+    } = useInput(value => value.trim() !== '', 'The lastname input is required');
 
     const {
-        value: school,
-        hasError: schoolError,
-        isValid: schoolIsValid,
-        setIsTouched: setSchoolIsTouched,
-        setValue: setSchoolValue
-    } = useInput();
+        value: birthdate,
+        hasError: birthdateError,
+        isValid: birthdateIsValid,
+        setIsTouched: setbirthdateIsTouched,
+        setValue: setbirthdateValue
+    } = useInput(value => value.trim() !== '', 'The birthdate input is required');
 
     const {
-        value: startDate,
-        hasError: startDateError,
-        isValid: startDateIsValid,
-        setIsTouched: setStartDateIsTouched,
-        setValue: setStartDateValue
-    } = useInput(value => value.trim() !== '', 'The start date input is required');
-
-    const {
-        value: endDate,
-        hasError: endDateError,
-        isValid: endDateIsValid,
-        setIsTouched: setEndDateIsTouched,
-        setValue: setEndDateValue
-    } = useInput(value => value.trim() !== '', 'The end date input is required');
+        value: course,
+        hasError: courseError,
+        isValid: courseIsValid,
+        setIsTouched: setcourseIsTouched,
+        setValue: setcourseValue
+    } = useInput(value => value.trim() !== '', 'The course is required');
 
     const http = useHttp();
 
     const fetchData = async (url) => {   
-        const response = await http.sendRequest({ url: 'courses/'+props.id });
+        const response = await http.sendRequest({ url: api+'/'+props.id });
 
         if(response.ok) {
             const data = await response.json();
             setCurrentEntity(data);
-            setNameValue({ target: { value: data.name}});
-            setDescriptionValue({ target: { value: data.description}});
-            setEndDateValue({ target: { value: data.end.split('T')[0]}});
-            setSchoolValue({ target: { value: data.school}});
-            setStartDateValue({ target: { value: data.start.split('T')[0]}});
+            setNameValue({ target: { value: data.firstname}});
+            setlastnameValue({ target: { value: data.lastname}});
+            setbirthdateValue({ target: { value: data.birthdate.split('T')[0]}});
+            setcourseValue({ target: { value: data.course}});
+        }
+    };
+
+    const fetchCoursesData = async () => {   
+        const response = await http.sendRequest({ url: 'courses' });
+
+        if(response.ok) {
+            const data = await response.json();
+            setCourses(data);
         }
     };
 
@@ -68,11 +72,12 @@ const StudentForm = (props) => {
         if(props.id) {
             fetchData();
         }
+        fetchCoursesData();
         // eslint-disable-next-line
     }, [])
 
 
-    const formIsValid = nameIsValid && descriptionIsValid && startDateIsValid && endDateIsValid && schoolIsValid;
+    const formIsValid = nameIsValid && lastnameIsValid && birthdateIsValid && courseIsValid;
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -81,35 +86,39 @@ const StudentForm = (props) => {
             if(props.id) {
                 const data = {
                     ...currentEntity, 
-                    name, 
-                    description,
-                    school,
-                    start: startDate,
-                    end: endDate
+                    firstname: name, 
+                    lastname: lastname,
+                    course: course,
+                    birthdate: birthdate,
                 }
 
-                http.sendRequest({ url: 'courses' }, data, 'PUT').then(() => {
-                    SuccessAlert('Operation completed', 'Course have been updated successfully');
+                http.sendRequest({ url: api }, data, 'PUT').then(() => {
+                    SuccessAlert('Operation completed', module+' have been updated successfully');
                     props.submit();
                 });
             }else {
                 const data = {
-                    name, 
-                    description,
-                    school,
-                    start: startDate,
-                    end: endDate
+                    firstname: name, 
+                    lastname: lastname,
+                    course: course,
+                    birthdate: birthdate,
+                    fathersFullName: '',
+                    mothersFullName: '',
+                    phoneNumber1: '',
+                    phoneNumber2: '',
+                    profilePicture: ''
                 }
 
-                http.sendRequest({ url: 'courses' }, data, 'POST').then(() => {
-                    SuccessAlert('Operation completed', 'Course have been created successfully');
+                http.sendRequest({ url: api }, data, 'POST').then(() => {
+                    SuccessAlert('Operation completed', module+' have been created successfully');
                     props.submit();
                 });
             }
         } else {
             setNameIsTouched(true);
-            setEndDateIsTouched(true);
-            setStartDateIsTouched(true);
+            setbirthdateIsTouched(true);
+            setcourseIsTouched(true);
+            setlastnameIsTouched(true);
         }
     }
 
@@ -117,53 +126,47 @@ const StudentForm = (props) => {
         <form className="row" onSubmit={submitHandler}>
             <div className="col-xs-12">
                 <Input 
-                    label="Name" 
+                    label="Firstname" 
                     value={name} 
                     type="text" 
-                    placeholder="Type your the course name"
+                    placeholder="Type your the firstname"
                     error={nameError}
                     onChange={setNameValue}
                     onBlur={setNameIsTouched} />
             </div>
             <div className="col-xs-12">
                 <Input 
-                    label="Description" 
-                    value={description} 
+                    label="Lastname" 
+                    value={lastname} 
                     type="text" 
-                    placeholder="Type your the course description"
-                    error={descriptionError}
-                    onChange={setDescriptionValue}
-                    onBlur={setDescriptionIsTouched} />
+                    placeholder="Type your the lastname"
+                    error={lastnameError}
+                    onChange={setlastnameValue}
+                    onBlur={setlastnameIsTouched} />
             </div>
             <div className="col-xs-12">
                 <Input 
-                    label="School" 
-                    value={school} 
-                    type="text" 
-                    placeholder="Type your the course's school name"
-                    error={schoolError}
-                    onChange={setSchoolValue}
-                    onBlur={setSchoolIsTouched} />
+                    label="Course" 
+                    value={course} 
+                    type="dropdown" 
+                    placeholder="Select your the course"
+                    error={courseError}
+                    onChange={setcourseValue}
+                    onBlur={setcourseIsTouched}>
+                    {courses.map(res => {
+                        return <option value={res.id}>{res.name}</option>
+                    })}
+                </Input>
             </div>
             <div className="col-xs-12">
                 <Input 
-                    label="Start date" 
-                    value={startDate} 
+                    label="Birthdate" 
+                    value={birthdate} 
                     type="date" 
-                    placeholder="Type your the course's start date"
-                    error={startDateError}
-                    onChange={setStartDateValue}
-                    onBlur={setStartDateIsTouched} />
-            </div>
-            <div className="col-xs-12">
-                <Input 
-                    label="End date" 
-                    value={endDate} 
-                    type="date" 
-                    placeholder="Type your the course's end date"
-                    error={endDateError}
-                    onChange={setEndDateValue}
-                    onBlur={setEndDateIsTouched} />
+                    placeholder="Type your the Birthdate"
+                    error={birthdateError}
+                    onChange={setbirthdateValue}
+                    onBlur={setbirthdateIsTouched} />
             </div>
             <div className="col-xs-12">
                 <div style={{width: '150px'}}>

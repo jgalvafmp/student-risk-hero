@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import ForgotPassword from "../../../pages/Auth/ForgotPassword/ForgotPassword";
 import Home from "../../../pages/Home/Home";
 import Login from '../../../pages/Auth/Login/Login';
@@ -54,20 +54,22 @@ const Routes = () => {
 
     return (
         <React.Fragment>
-            <Switch>
-                <Route path="/" exact>
-                    <Layout>
-                        <Home />
-                    </Layout>
-                </Route>
-                {unathorizedUrls}
-                {authCtx.isLoggedIn && authorizedUrls}
-                <Route path="*">
-                    <Layout>
-                        <Redirect to={'/'} />
-                    </Layout>
-                </Route>
-            </Switch>
+            <HashRouter>
+                <Switch>
+                    <Route path="/" exact>
+                        <Layout>
+                            <Home />
+                        </Layout>
+                    </Route>
+                    {unathorizedUrls}
+                    {authCtx.isLoggedIn && authorizedUrls}
+                    <Route path="*">
+                        <Layout>
+                            <Redirect to={'/'} />
+                        </Layout>
+                    </Route>
+                </Switch>
+            </HashRouter>
         </React.Fragment>
     );
 }
