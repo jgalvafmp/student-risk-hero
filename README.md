@@ -3,7 +3,7 @@ Es una solucion web que consta de dos aplicaciones, un web service y una aplicac
 
 ## Links
 - Web app: https://student-risk-hero.netlify.app/
-- Web service: http://www.student-risk-hero.somee.com/swagger/index.html
+- Web service: https://student-risk-hero.azurewebsites.net/swagger/index.html
 
 <h2>Security (Seguridad)</h2>
 <ul>
