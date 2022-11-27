@@ -21,7 +21,7 @@ const ModalCard = (props) => {
     );
 }
 
-export const Modal = props => {
+const Modal = props => {
     return (
         <React.Fragment>
             {ReactDOM.createPortal(
