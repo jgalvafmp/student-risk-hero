@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using student_risk_hero.Data;
 
@@ -11,9 +12,11 @@ using student_risk_hero.Data;
 namespace studentriskhero.Migrations
 {
     [DbContext(typeof(StudentRiskHeroContext))]
-    partial class StudentRiskHeroContextModelSnapshot : ModelSnapshot
+    [Migration("20221127130031_CourseRelationsEntities")]
+    partial class CourseRelationsEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,8 +115,6 @@ namespace studentriskhero.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AssignmentId");
 
                     b.ToTable("AssignmentStudents");
                 });
@@ -403,8 +404,6 @@ namespace studentriskhero.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId");
-
                     b.ToTable("RiskProfiles");
                 });
 
@@ -471,8 +470,6 @@ namespace studentriskhero.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RiskProfileId");
-
                     b.ToTable("RiskProfileEntries");
                 });
 
@@ -511,8 +508,6 @@ namespace studentriskhero.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RiskProfileId");
 
                     b.ToTable("RiskProfileEvidences");
                 });
@@ -698,17 +693,6 @@ namespace studentriskhero.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("student_risk_hero.Data.Models.AssignmentStudent", b =>
-                {
-                    b.HasOne("student_risk_hero.Data.Models.Assignment", "Assignment")
-                        .WithMany()
-                        .HasForeignKey("AssignmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Assignment");
-                });
-
             modelBuilder.Entity("student_risk_hero.Data.Models.CourseStudent", b =>
                 {
                     b.HasOne("student_risk_hero.Data.Models.Student", "Student")
@@ -718,39 +702,6 @@ namespace studentriskhero.Migrations
                         .IsRequired();
 
                     b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("student_risk_hero.Data.Models.RiskProfiles.RiskProfile", b =>
-                {
-                    b.HasOne("student_risk_hero.Data.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("student_risk_hero.Data.Models.RiskProfiles.RiskProfileEntries", b =>
-                {
-                    b.HasOne("student_risk_hero.Data.Models.RiskProfiles.RiskProfile", "RiskProfile")
-                        .WithMany()
-                        .HasForeignKey("RiskProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RiskProfile");
-                });
-
-            modelBuilder.Entity("student_risk_hero.Data.Models.RiskProfiles.RiskProfileEvidence", b =>
-                {
-                    b.HasOne("student_risk_hero.Data.Models.RiskProfiles.RiskProfile", "RiskProfile")
-                        .WithMany()
-                        .HasForeignKey("RiskProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RiskProfile");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,6 @@
-﻿namespace student_risk_hero.Data.Models.RiskProfiles
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace student_risk_hero.Data.Models.RiskProfiles
 {
     public class RiskProfileEntries :BaseEntity
     {
@@ -11,6 +13,9 @@
         public Guid? TeacherId { get; set; }
         public Guid? CounselorId { get; set; }
         public Guid? DirectorId { get; set; }
+
+        [ForeignKey("RiskProfileId")]
+        public RiskProfile RiskProfile { get; set; }
 
         private string assistantType;
         public string AssistantType

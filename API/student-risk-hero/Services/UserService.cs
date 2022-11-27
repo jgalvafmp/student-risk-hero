@@ -41,6 +41,15 @@ namespace student_risk_hero.Services
             {
                 var createdUser = base.Add(entity);
 
+                if(entity.Role == nameof(RoleTypes.Teacher))
+                {
+                    var teacher = new Teacher();
+                    teacher.Firstname = entity.Firstname;
+                    teacher.Lastname = entity.Lastname;
+                    teacher.Gender = entity.Gender  ;
+                    teacher.UserId = createdUser.Id;
+                }
+
                 emailService.SendNewUserMail(createdUser, "Welcome to Student Risk Hero", EmailTypesEnum.Welcoming);
 
                 trans.Commit();

@@ -27,6 +27,9 @@ namespace student_risk_hero.Services
             // School related
             services.AddScoped<IBaseService<Course>, BaseService<Course>>();
             services.AddScoped<IBaseService<CourseGrades>, BaseService<CourseGrades>>();
+            services.AddScoped<IBaseService<CourseStudent>, BaseService<CourseStudent>>();
+            services.AddScoped<IBaseService<Assignment>, BaseService<Assignment>>();
+            services.AddScoped<IBaseService<AssignmentStudent>, BaseService<AssignmentStudent>>();
 
             // Main Process
             services.AddScoped<IRiskProfileService, RiskProfileService>();
