@@ -3,7 +3,8 @@ import Input from "../../../../components/core/Input/Input";
 import Button from "../../../../components/core/Button/Button";
 import useHttp from "../../../../hooks/use-http";
 import { SuccessAlert } from "../../../../services/AlertService";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Spinner from "../../../../components/core/Layout/Spinner/Spinner";
 
 const StudentForm = (props) => {
     const api = "students";
@@ -123,57 +124,60 @@ const StudentForm = (props) => {
     }
 
     return (
-        <form className="row" onSubmit={submitHandler}>
-            <div className="col-xs-12">
-                <Input 
-                    label="Firstname" 
-                    value={name} 
-                    type="text" 
-                    placeholder="Type your the firstname"
-                    error={nameError}
-                    onChange={setNameValue}
-                    onBlur={setNameIsTouched} />
-            </div>
-            <div className="col-xs-12">
-                <Input 
-                    label="Lastname" 
-                    value={lastname} 
-                    type="text" 
-                    placeholder="Type your the lastname"
-                    error={lastnameError}
-                    onChange={setlastnameValue}
-                    onBlur={setlastnameIsTouched} />
-            </div>
-            <div className="col-xs-12">
-                <Input 
-                    label="Course" 
-                    value={course} 
-                    type="dropdown" 
-                    placeholder="Select your the course"
-                    error={courseError}
-                    onChange={setcourseValue}
-                    onBlur={setcourseIsTouched}>
-                    {courses.map(res => {
-                        return <option value={res.id}>{res.name}</option>
-                    })}
-                </Input>
-            </div>
-            <div className="col-xs-12">
-                <Input 
-                    label="Birthdate" 
-                    value={birthdate} 
-                    type="date" 
-                    placeholder="Type your the Birthdate"
-                    error={birthdateError}
-                    onChange={setbirthdateValue}
-                    onBlur={setbirthdateIsTouched} />
-            </div>
-            <div className="col-xs-12">
-                <div style={{width: '150px'}}>
-                    <Button type="submit">Submit</Button>
+        <React.Fragment>
+            {http.isLoading && <Spinner />}
+            <form className="row" onSubmit={submitHandler}>
+                <div className="col-xs-12">
+                    <Input 
+                        label="Firstname" 
+                        value={name} 
+                        type="text" 
+                        placeholder="Type your the firstname"
+                        error={nameError}
+                        onChange={setNameValue}
+                        onBlur={setNameIsTouched} />
                 </div>
-            </div>
-        </form>
+                <div className="col-xs-12">
+                    <Input 
+                        label="Lastname" 
+                        value={lastname} 
+                        type="text" 
+                        placeholder="Type your the lastname"
+                        error={lastnameError}
+                        onChange={setlastnameValue}
+                        onBlur={setlastnameIsTouched} />
+                </div>
+                <div className="col-xs-12">
+                    <Input 
+                        label="Course" 
+                        value={course} 
+                        type="dropdown" 
+                        placeholder="Select your the course"
+                        error={courseError}
+                        onChange={setcourseValue}
+                        onBlur={setcourseIsTouched}>
+                        {courses.map(res => {
+                            return <option value={res.id}>{res.name}</option>
+                        })}
+                    </Input>
+                </div>
+                <div className="col-xs-12">
+                    <Input 
+                        label="Birthdate" 
+                        value={birthdate} 
+                        type="date" 
+                        placeholder="Type your the Birthdate"
+                        error={birthdateError}
+                        onChange={setbirthdateValue}
+                        onBlur={setbirthdateIsTouched} />
+                </div>
+                <div className="col-xs-12">
+                    <div style={{width: '150px'}}>
+                        <Button type="submit">Submit</Button>
+                    </div>
+                </div>
+            </form>
+        </React.Fragment>
     );
 }
 

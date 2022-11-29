@@ -5,6 +5,7 @@ import useHttp from "../../../hooks/use-http";
 import Table from "../../../components/core/Table/Table";
 import { ErrorAlert, QuestionAlert, SuccessAlert, InfoAlert } from '../../../services/AlertService';
 import StudentForm from "./Form/StudentForm";
+import Spinner from "../../../components/core/Layout/Spinner/Spinner";
 
 const StudentPage = () => {
     const api = "students";
@@ -26,6 +27,11 @@ const StudentPage = () => {
     const edit = (id) => {
         setCurrentId(id);
         setOpenForm(true);
+    }
+
+    const newHandler = () => {
+        setOpenForm(true);
+        setCurrentId(undefined);
     }
 
     const remove = (id) => {
@@ -69,14 +75,14 @@ const StudentPage = () => {
     return (
         <React.Fragment>
             {openForm && form}
-            
+            {http.isLoading && <Spinner />}
             <div className="row">
                 <div className="col-xs-6">
                     <h1>{module}s</h1>
                 </div>
                 <div className="col-xs-6 align-end">
                     <div style={{width: "200px" }}>
-                        <Button onClick={() => { setOpenForm(true) }}>
+                        <Button onClick={newHandler}>
                             New {module}
                         </Button>
                     </div>

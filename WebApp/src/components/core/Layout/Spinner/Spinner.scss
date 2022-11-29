@@ -3,6 +3,8 @@
     position: relative;
     width: 80px;
     height: 80px;
+    transform: translate(50vw, 50vh);
+    z-index: 210;
   }
   .lds-roller div {
     animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
@@ -74,12 +76,11 @@
     top: 56px;
     left: 12px;
   }
-  @keyframes lds-roller {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
   }
-  
+  100% {
+    transform: rotate(360deg);
+  }
+}

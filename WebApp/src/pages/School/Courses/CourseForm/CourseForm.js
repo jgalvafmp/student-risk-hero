@@ -3,10 +3,15 @@ import Input from "../../../../components/core/Input/Input";
 import Button from "../../../../components/core/Button/Button";
 import useHttp from "../../../../hooks/use-http";
 import { SuccessAlert } from "../../../../services/AlertService";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Spinner from "../../../../components/core/Layout/Spinner/Spinner";
+
+const AddStudentForm = (props) => {
+}
 
 const CourseForm = (props) => {
     const [currentEntity, setCurrentEntity] = useState(undefined);
+    const [addStudentForm, setAddStudentForm] = useState(false);
 
     const {
         value: name,
@@ -113,64 +118,79 @@ const CourseForm = (props) => {
         }
     }
 
+    const addStudentHandler = () => {
+        setAddStudentForm(true);
+    }
+
     return (
-        <form className="row" onSubmit={submitHandler}>
-            <div className="col-xs-12">
-                <Input 
-                    label="Name" 
-                    value={name} 
-                    type="text" 
-                    placeholder="Type your the course name"
-                    error={nameError}
-                    onChange={setNameValue}
-                    onBlur={setNameIsTouched} />
-            </div>
-            <div className="col-xs-12">
-                <Input 
-                    label="Description" 
-                    value={description} 
-                    type="text" 
-                    placeholder="Type your the course description"
-                    error={descriptionError}
-                    onChange={setDescriptionValue}
-                    onBlur={setDescriptionIsTouched} />
-            </div>
-            <div className="col-xs-12">
-                <Input 
-                    label="School" 
-                    value={school} 
-                    type="text" 
-                    placeholder="Type your the course's school name"
-                    error={schoolError}
-                    onChange={setSchoolValue}
-                    onBlur={setSchoolIsTouched} />
-            </div>
-            <div className="col-xs-12">
-                <Input 
-                    label="Start date" 
-                    value={startDate} 
-                    type="date" 
-                    placeholder="Type your the course's start date"
-                    error={startDateError}
-                    onChange={setStartDateValue}
-                    onBlur={setStartDateIsTouched} />
-            </div>
-            <div className="col-xs-12">
-                <Input 
-                    label="End date" 
-                    value={endDate} 
-                    type="date" 
-                    placeholder="Type your the course's end date"
-                    error={endDateError}
-                    onChange={setEndDateValue}
-                    onBlur={setEndDateIsTouched} />
-            </div>
-            <div className="col-xs-12">
-                <div style={{width: '150px'}}>
-                    <Button type="submit">Submit</Button>
+        <React.Fragment>
+            {http.isLoading && <Spinner />}
+            {addStudentForm && <AddStudentForm />}
+            <form className="row" onSubmit={submitHandler}>
+                <div className="col-xs-12">
+                    <div style={{width: "200px" }}>
+                        <Button onClick={addStudentHandler}>
+                            Add Students
+                        </Button>
+                    </div>
                 </div>
-            </div>
-        </form>
+                <div className="col-xs-12">
+                    <Input 
+                        label="Name" 
+                        value={name} 
+                        type="text" 
+                        placeholder="Type your the course name"
+                        error={nameError}
+                        onChange={setNameValue}
+                        onBlur={setNameIsTouched} />
+                </div>
+                <div className="col-xs-12">
+                    <Input 
+                        label="Description" 
+                        value={description} 
+                        type="text" 
+                        placeholder="Type your the course description"
+                        error={descriptionError}
+                        onChange={setDescriptionValue}
+                        onBlur={setDescriptionIsTouched} />
+                </div>
+                <div className="col-xs-12">
+                    <Input 
+                        label="School" 
+                        value={school} 
+                        type="text" 
+                        placeholder="Type your the course's school name"
+                        error={schoolError}
+                        onChange={setSchoolValue}
+                        onBlur={setSchoolIsTouched} />
+                </div>
+                <div className="col-xs-12">
+                    <Input 
+                        label="Start date" 
+                        value={startDate} 
+                        type="date" 
+                        placeholder="Type your the course's start date"
+                        error={startDateError}
+                        onChange={setStartDateValue}
+                        onBlur={setStartDateIsTouched} />
+                </div>
+                <div className="col-xs-12">
+                    <Input 
+                        label="End date" 
+                        value={endDate} 
+                        type="date" 
+                        placeholder="Type your the course's end date"
+                        error={endDateError}
+                        onChange={setEndDateValue}
+                        onBlur={setEndDateIsTouched} />
+                </div>
+                <div className="col-xs-12">
+                    <div style={{width: '150px'}}>
+                        <Button type="submit">Submit</Button>
+                    </div>
+                </div>
+            </form>
+        </React.Fragment>
     );
 }
 

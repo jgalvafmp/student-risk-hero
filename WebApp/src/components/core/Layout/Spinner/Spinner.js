@@ -1,4 +1,9 @@
 import './Spinner.scss';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+const Backdrop = () => <div className="srhero__backdrop"></div>;
 
 const SpinnerElement = () => {
     return (
@@ -12,12 +17,16 @@ const SpinnerElement = () => {
             <div></div>
             <div></div>
         </div>
-    )
+    );
 }
 
-const Spinner = props => {
+const Spinner = () => {
     return (
         <React.Fragment>
+            {ReactDOM.createPortal(
+                <Backdrop />,
+                document.querySelector("#backdrop-root")
+            )}
             {ReactDOM.createPortal(
                 <SpinnerElement />,
                 document.querySelector("#loading-root")

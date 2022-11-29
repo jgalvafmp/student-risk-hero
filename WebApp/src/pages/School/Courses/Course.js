@@ -5,6 +5,7 @@ import CourseForm from "./CourseForm/CourseForm";
 import useHttp from "../../../hooks/use-http";
 import Table from "../../../components/core/Table/Table";
 import { ErrorAlert, QuestionAlert, SuccessAlert, InfoAlert } from '../../../services/AlertService';
+import Spinner from "../../../components/core/Layout/Spinner/Spinner";
 
 const CoursePage = () => {
     const [openForm, setOpenForm] = useState(false);
@@ -19,13 +20,16 @@ const CoursePage = () => {
     }
 
     const edit = (id) => {
-        console.log(id)
         setCurrentId(id);
         setOpenForm(true);
     }
 
+    const newHandler = () => {
+        setOpenForm(true);
+        setCurrentId(undefined);
+    }
+
     const remove = (id) => {
-        console.log(id)
         QuestionAlert().then(async (result) => {
             if (result.isConfirmed) {
                 const response = await http.sendRequest({ url: 'courses/'+id }, undefined, 'DELETE');
@@ -68,15 +72,15 @@ const CoursePage = () => {
 
     return (
         <React.Fragment>
+            {http.isLoading && <Spinner />}
             {openForm && form}
-            
             <div className="row">
                 <div className="col-xs-6">
                     <h1>Courses</h1>
                 </div>
                 <div className="col-xs-6 align-end">
                     <div style={{width: "200px" }}>
-                        <Button onClick={() => { setOpenForm(true) }}>
+                        <Button onClick={newHandler}>
                             New course
                         </Button>
                     </div>

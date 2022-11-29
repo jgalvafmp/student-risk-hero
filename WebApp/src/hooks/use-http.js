@@ -27,11 +27,14 @@ const useHttp = () => {
             );
 
             if(!response.ok) {
+                setIsLoading(false);
                 throw new Error(response.json());
             }
 
+            setIsLoading(false);
             return response;
         } catch(error) {
+            setIsLoading(false);
             throw new Error("Invalid operation");
         }
     };

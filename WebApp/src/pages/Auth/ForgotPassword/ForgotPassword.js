@@ -7,9 +7,14 @@ import logo from '../../../logo.svg';
 import readers from '../../../assets/images/thinking.png';
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import Spinner from '../../../components/core/Layout/Spinner/Spinner';
+import React from 'react';
+import { ErrorAlert, SuccessAlert } from '../../../services/AlertService';
 
 const ForgotPassword = () => {
     const history = useHistory();
+
+    const [loading, setLoading] = useState(false);
 
     const { token } = useParams();
 
@@ -62,23 +67,25 @@ const ForgotPassword = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
         const data = {...state};
 
         if (token) {
             AuthService.forgotPassword(data.Password, token)
             .then(response => {
-                console.log(response)
-               if(response.status === 400) {
-                addValidation(response);
-               } else {
-                alert('created')
-               }
+                setLoading(false);
+                if(response.status === 400) {
+                    addValidation(response);
+                } else {
+                    SuccessAlert("Operation successful", "Password have been changed");
+                }
             });
         } else {
             AuthService.forgetPassword(data.Username)
             .then(async response => {
                 const res = await response.json();
                 if (res.indexOf("not found") > -1) {
+                    ErrorAlert("Error", "Password could not be changed");
                     setState(prevState => {
                         const newState = { ...prevState };
                         newState.errors.Username = res;
@@ -137,41 +144,44 @@ const ForgotPassword = () => {
             </div>
         );
     }
-    console.log((state.Password !== state.confirmPassword && state.Password > 3) || !token)
+
     return (
-        <div className="srhero__sign-up--container">
-            <div className="card--container col-xs-12 col-md-8 col-lg-9">
-                <Card>
-                    <form onSubmit={onSubmit}>
-                        <div className='logo'>
-                            <img src={logo} alt="logo" width={'200px'} />
-                        </div>
-                        <div className='content'>
-                            <h1>Login back in form</h1>
-                            <div className='row'>
-                                <div className='col-xs-3'>
-                                    <img src={readers} alt="readers" width={'70%'} />
-                                </div>
-                                {form}
-                                <div className='button-section col-xs-12'>
-                                    <div className='row'>
-                                        <div className='col-xs-6 col-xs-offset-3'>
-                                            <Button 
-                                                type='submit'
-                                                disabled={!(!(state.Password !== state.confirmPassword && state.Password > 3) || !token)}>
-                                                    {token ? 'Change password' : 'Request new password'}
-                                            </Button>
-                                            <br />
-                                            <Button type='click' onClick={returnToLogin}>Return to login</Button>
+        <React.Fragment>
+            {loading && <Spinner />}
+            <div className="srhero__sign-up--container">
+                <div className="card--container col-xs-12 col-md-8 col-lg-9">
+                    <Card>
+                        <form onSubmit={onSubmit}>
+                            <div className='logo'>
+                                <img src={logo} alt="logo" width={'200px'} />
+                            </div>
+                            <div className='content'>
+                                <h1>Login back in form</h1>
+                                <div className='row'>
+                                    <div className='col-xs-3'>
+                                        <img src={readers} alt="readers" width={'70%'} />
+                                    </div>
+                                    {form}
+                                    <div className='button-section col-xs-12'>
+                                        <div className='row'>
+                                            <div className='col-xs-6 col-xs-offset-3'>
+                                                <Button 
+                                                    type='submit'
+                                                    disabled={!(!(state.Password !== state.confirmPassword && state.Password > 3) || !token)}>
+                                                        {token ? 'Change password' : 'Request new password'}
+                                                </Button>
+                                                <br />
+                                                <Button type='click' onClick={returnToLogin}>Return to login</Button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </Card>
+                        </form>
+                    </Card>
+                </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 
