@@ -26,7 +26,7 @@ namespace student_risk_hero.Controllers
             storageService = StorageService;
         }
 
-        [HttpPost]
+        [HttpPost("submit-homework")]
         public IActionResult SubmitHomeWork([FromBody]HomeworkDto homework, [FromForm] IFormFile asset)
         {
             if (asset == null) return BadRequest("File is not valid");
