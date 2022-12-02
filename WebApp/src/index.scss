@@ -1,4 +1,5 @@
 @import './assets/styles/bootstrap-grid-system.scss';
+@import './assets/styles/bootstrap-table.scss';
 
 * {
   box-sizing: border-box;
@@ -26,4 +27,14 @@ h1, h2, h3 {
 .align-end {
   display: flex;
   justify-content: flex-end;
+}
+
+.srhero__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 120;
+  background: rgba(0, 0, 0, 0.75);
 }

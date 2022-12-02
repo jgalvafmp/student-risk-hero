@@ -64,6 +64,9 @@
         // School related
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseGrades> CourseGrades { get; set; }
+        public DbSet<CourseStudent> CourseStudents { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<AssignmentStudent> AssignmentStudents { get; set; }
 
         // Main Process
         public DbSet<RiskProfile> RiskProfiles { get; set; }

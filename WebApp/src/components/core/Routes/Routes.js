@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import ForgotPassword from "../../../pages/Auth/ForgotPassword/ForgotPassword";
 import Home from "../../../pages/Home/Home";
 import Login from '../../../pages/Auth/Login/Login';
@@ -10,6 +10,7 @@ import AuthContext from "../../../store/auth-context";
 import Layout from "../Layout/Layout";
 import { useContext } from 'react';
 import CoursePage from '../../../pages/School/Courses/Course';
+import StudentPage from "../../../pages/Actors/Students/Students";
 
 const Routes = () => {
     const authCtx = useContext(AuthContext)
@@ -42,26 +43,33 @@ const Routes = () => {
             <Layout>
                 <CoursePage />
             </Layout>
+        </Route>,
+        <Route path="/students" key="/students">
+            <Layout>
+                <StudentPage />
+            </Layout>
         </Route>
     ];
 
 
     return (
         <React.Fragment>
-            <Switch>
-                <Route path="/" exact>
-                    <Layout>
-                        <Home />
-                    </Layout>
-                </Route>
-                {unathorizedUrls}
-                {authCtx.isLoggedIn && authorizedUrls}
-                <Route path="*">
-                    <Layout>
-                        <Redirect to={'/'} />
-                    </Layout>
-                </Route>
-            </Switch>
+            <HashRouter>
+                <Switch>
+                    <Route path="/" exact>
+                        <Layout>
+                            <Home />
+                        </Layout>
+                    </Route>
+                    {unathorizedUrls}
+                    {authCtx.isLoggedIn && authorizedUrls}
+                    <Route path="*">
+                        <Layout>
+                            <Redirect to={'/'} />
+                        </Layout>
+                    </Route>
+                </Switch>
+            </HashRouter>
         </React.Fragment>
     );
 }

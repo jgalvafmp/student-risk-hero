@@ -1,0 +1,21 @@
+@import "../../../assets/styles/colors.scss";
+
+table {
+    margin-top: 1.5rem;
+}
+
+thead tr th {
+    background-color: $main-primary;
+    border-color: $main-primary;
+    color: $bg-main;
+}
+.option-th {
+    width: 220px;
+}
+.options {
+    display: flex;
+    justify-content: space-between;
+    button {
+        width: 100px;
+    }
+}

@@ -23,6 +23,9 @@ namespace student_risk_hero.Data
             // School related
             services.AddScoped<IBaseRepository<Course>, BaseRepository<Course>>();
             services.AddScoped<IBaseRepository<CourseGrades>, BaseRepository<CourseGrades>>();
+            services.AddScoped<IBaseRepository<CourseStudent>, BaseRepository<CourseStudent>>();
+            services.AddScoped<IBaseRepository<Assignment>, BaseRepository<Assignment>>();
+            services.AddScoped<IBaseRepository<AssignmentStudent>, BaseRepository<AssignmentStudent>>();
 
             // Main Process
             services.AddScoped<IBaseRepository<RiskProfile>, BaseRepository<RiskProfile>>();

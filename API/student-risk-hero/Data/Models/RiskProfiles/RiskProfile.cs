@@ -1,4 +1,6 @@
-﻿namespace student_risk_hero.Data.Models.RiskProfiles
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace student_risk_hero.Data.Models.RiskProfiles
 {
     public class RiskProfile:BaseEntity
     {
@@ -14,6 +16,9 @@
 
         public bool? TeachersApproval { get; set; }
         public DateTime? TeachersApprovalDate { get; set; }
+
+        [ForeignKey("StudentId")]
+        public Student Student { get; set; }
 
         private string state;
         public string State
